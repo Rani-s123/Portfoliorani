@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rani Rajpurohit — Product Designer & Design Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --white:#ffffff;
+  --cream:#faf9f6;
+  --warm:#f4f1eb;
+  --border:#e5e0d8;
+  --text:#1c1917;
+  --muted:#78716c;
+  --faint:#a8a29e;
+  --accent:#2563eb;
+  --accent-bg:#eff6ff;
+  --green:#0f766e;
+  --green-bg:#f0fdf9;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Geist',sans-serif;background:var(--cream);color:var(--text);font-size:15px;line-height:1.7;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,249,246,0.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:17px;letter-spacing:-0.02em;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:13px;color:var(--muted);transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--text)!important;color:var(--white)!important;padding:8px 20px!important;border-radius:6px!important;font-weight:500!important;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 48px 60px;max-width:1100px;margin:0 auto;}
+.hero-inner{display:grid;grid-template-columns:1fr 400px;gap:80px;align-items:center;width:100%;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--green);background:var(--green-bg);border:1px solid #99f6e4;padding:5px 14px;border-radius:20px;margin-bottom:30px;letter-spacing:0.04em;}
+.hero-tag span{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(40px,4.5vw,58px);font-weight:400;line-height:1.08;letter-spacing:-0.02em;margin-bottom:22px;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero p{font-size:16px;color:var(--muted);max-width:480px;margin-bottom:36px;font-weight:300;line-height:1.75;}
+.hero-btns{display:flex;gap:12px;}
+.btn-dark{background:var(--text);color:var(--white);padding:13px 28px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.2s;display:inline-block;}
+.btn-dark:hover{background:#333;transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--text);padding:13px 28px;border-radius:8px;font-size:14px;font-weight:500;border:1.5px solid var(--border);cursor:pointer;font-family:inherit;transition:all 0.2s;display:inline-block;}
+.btn-outline:hover{border-color:#999;transform:translateY(-1px);}
+.hero-right{display:flex;flex-direction:column;gap:14px;}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 24px;transition:transform 0.2s,box-shadow 0.2s;}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+.stat-card:nth-child(2){margin-left:20px;}
+.stat-card:nth-child(3){margin-left:40px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:400;color:var(--text);line-height:1;}
+.stat-label{font-size:12px;color:var(--muted);margin-top:5px;}
+
+/* DIVIDER */
+.divider{max-width:1100px;margin:0 auto;padding:0 48px;}
+.divider hr{border:none;border-top:1px solid var(--border);}
+
+/* SECTION */
+.section{max-width:1100px;margin:0 auto;padding:80px 48px;}
+.section-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3vw,34px);font-weight:400;line-height:1.2;margin-bottom:44px;letter-spacing:-0.01em;}
+
+/* EXPERIENCE */
+.exp-item{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:36px 0;border-bottom:1px solid var(--border);}
+.exp-item:first-child{border-top:1px solid var(--border);}
+.exp-meta{display:flex;flex-direction:column;gap:4px;}
+.exp-period{font-size:12px;color:var(--faint);}
+.exp-co{font-size:13px;font-weight:600;}
+.exp-loc{font-size:12px;color:var(--muted);}
+.exp-right h3{font-size:16px;font-weight:600;margin-bottom:4px;}
+.exp-type{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);padding:3px 10px;border-radius:4px;margin-bottom:16px;}
+.exp-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.exp-list li{font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.65;}
+.exp-list li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:1px;background:var(--faint);}
+
+/* CASE STUDY FEATURED */
+.featured-case{background:var(--text);border-radius:20px;padding:48px;color:var(--white);margin-bottom:20px;display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center;}
+.featured-label{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6ee7b7;margin-bottom:12px;}
+.featured-case h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;line-height:1.2;margin-bottom:14px;}
+.featured-case p{font-size:14px;color:#a8a29e;line-height:1.7;margin-bottom:24px;font-weight:300;}
+.featured-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:28px;}
+.feat-tag{font-size:11px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#e7e5e4;padding:4px 11px;border-radius:5px;}
+.featured-stats{display:flex;gap:28px;}
+.fstat{display:flex;flex-direction:column;}
+.fstat-num{font-family:'Playfair Display',serif;font-size:26px;color:var(--white);}
+.fstat-label{font-size:11px;color:#78716c;margin-top:3px;}
+.featured-right{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px;}
+.process-mini{display:flex;flex-direction:column;gap:12px;}
+.pm-step{display:flex;gap:14px;align-items:flex-start;}
+.pm-num{width:22px;height:22px;border-radius:50%;background:rgba(110,231,183,0.15);border:1px solid rgba(110,231,183,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#6ee7b7;flex-shrink:0;margin-top:2px;}
+.pm-text h5{font-size:12px;font-weight:600;color:var(--white);margin-bottom:2px;}
+.pm-text p{font-size:11.5px;color:#78716c;line-height:1.5;}
+.view-case-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:var(--white);padding:11px 20px;border-radius:8px;font-size:13px;font-weight:500;transition:background 0.2s;}
+.view-case-btn:hover{background:rgba(255,255,255,0.15);}
+
+/* PROJECTS GRID */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.proj-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all 0.2s;position:relative;overflow:hidden;}
+.proj-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.07);border-color:#ccc;}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+.proj-card.span-2{grid-column:span 2;}
+.proj-card.blue::before{background:linear-gradient(90deg,#2563eb,#7c3aed);}
+.proj-card.pink::before{background:linear-gradient(90deg,#db2777,#e11d48);}
+.proj-card.amber::before{background:linear-gradient(90deg,#d97706,#f59e0b);}
+.proj-card.teal::before{background:linear-gradient(90deg,#0f766e,#0891b2);}
+.proj-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:18px;}
+.proj-icon.blue{background:#dbeafe;}
+.proj-icon.pink{background:#fce7f3;}
+.proj-icon.amber{background:#fef9c3;}
+.proj-icon.teal{background:#ccfbf1;}
+.proj-title{font-size:15px;font-weight:600;margin-bottom:5px;}
+.proj-stack{font-size:11px;color:var(--accent);font-weight:600;letter-spacing:0.03em;margin-bottom:10px;text-transform:uppercase;}
+.proj-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px;}
+.proj-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.proj-metric{font-size:11px;font-weight:600;color:var(--green);background:var(--green-bg);padding:4px 10px;border-radius:6px;}
+.proj-award{font-size:11px;color:#b45309;background:#fef3c7;border:1px solid #fde68a;padding:4px 10px;border-radius:6px;}
+.proj-link{font-size:12px;color:var(--accent);display:flex;align-items:center;gap:5px;font-weight:500;}
+.proj-link:hover{text-decoration:underline;}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.process-step{background:var(--white);padding:28px 22px;}
+.process-step:hover{background:var(--cream);}
+.process-num{font-family:'Playfair Display',serif;font-size:26px;color:var(--border);margin-bottom:12px;}
+.process-step h4{font-size:13px;font-weight:600;margin-bottom:8px;}
+.process-step p{font-size:12.5px;color:var(--muted);line-height:1.6;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.skill-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all 0.2s;}
+.skill-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.05);}
+.skill-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{font-size:12px;background:var(--warm);border:1px solid var(--border);color:var(--text);padding:4px 11px;border-radius:6px;}
+
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cert-row{display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 20px;transition:transform 0.2s;}
+.cert-row:hover{transform:translateX(4px);}
+.cert-dot{width:30px;height:30px;border-radius:50%;background:var(--green-bg);border:1px solid #99f6e4;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;color:var(--green);font-weight:700;}
+.cert-name{font-size:13px;font-weight:500;}
+.cert-by{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* CONTACT */
+.contact-section{background:var(--text);color:var(--white);padding:80px 48px;margin-top:40px;}
+.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;}
+.contact-left h2{font-family:'Playfair Display',serif;font-size:40px;font-weight:400;line-height:1.15;margin-bottom:12px;letter-spacing:-0.02em;}
+.contact-left p{color:#a8a29e;font-size:15px;font-weight:300;}
+.contact-links{display:flex;flex-direction:column;gap:10px;}
+.contact-link{display:flex;align-items:center;gap:10px;padding:12px 20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:var(--white);font-size:13px;transition:background 0.2s;}
+.contact-link:hover{background:rgba(255,255,255,0.1);}
+.contact-icon{font-size:15px;width:20px;}
+
+footer{background:var(--text);border-top:1px solid rgba(255,255,255,0.08);text-align:center;padding:24px 48px;font-size:12px;color:#78716c;}
+
+@media(max-width:768px){
+  .hero-inner,.proj-grid,.skills-grid,.certs-grid,.process-grid,.featured-case,.contact-inner{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  nav,.section,.hero,.divider,.contact-section{padding-left:20px;padding-right:20px;}
+  .exp-item{grid-template-columns:1fr;}
+  .featured-case{padding:28px;}
+  .proj-card.span-2{grid-column:auto;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Rani Rajpurohit</div>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span></span> Open to full-time roles</div>
+      <h1>Product Designer<br>& <em>Design</em><br>Engineer</h1>
+      <p>I bridge the gap between beautiful design and working code. From Figma systems to production React — designing and shipping for 10,000+ users.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn-dark">View Work</a>
+        <a href="mailto:rajpurohitrani004@gmail.com" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right reveal">
+      <div class="stat-card"><div class="stat-num">10K+</div><div class="stat-label">Monthly active users on shipped products</div></div>
+      <div class="stat-card"><div class="stat-num">35%</div><div class="stat-label">Improvement in task completion rate</div></div>
+      <div class="stat-card"><div class="stat-num">5×</div><div class="stat-label">LinkedIn certifications in design & UX</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- EXPERIENCE -->
+<div id="experience" class="section reveal">
+  <div class="section-eyebrow">Experience</div>
+  <div class="section-title">Where I've worked</div>
+  <div>
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Nov 2024 – Present</div>
+        <div class="exp-co">Faclon Labs</div>
+        <div class="exp-loc">Mumbai</div>
+      </div>
+      <div class="exp-right">
+        <h3>Frontend Developer & UI/UX Designer</h3>
+        <div class="exp-type">Internship</div>
+        <ul class="exp-list">
+          <li>Designed & built IOsense IoT dashboard (Figma → React/Next.js) for 10,000+ monthly active users</li>
+          <li>Conducted 15+ user interviews & usability testing sessions with enterprise stakeholders</li>
+          <li>Built 20-component Figma library aligned with design system principles; migrated to Storybook</li>
+          <li>Resolved 15+ critical UI/UX production bugs — improved task completion rate by 35%</li>
+          <li>Wrote design-to-code handoff specs, cutting developer context-switching by 40%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2024 – Jun 2025</div>
+        <div class="exp-co">Last Moment Tuitions</div>
+        <div class="exp-loc">Mumbai</div>
+      </div>
+      <div class="exp-right">
+        <h3>Backend Developer</h3>
+        <div class="exp-type">Product Focus</div>
+        <ul class="exp-list">
+          <li>Collaborated on UI design for 12+ APIs handling 50,000+ daily requests</li>
+          <li>Built responsive, accessible frontends meeting WCAG 2.1 AA standards</li>
+          <li>Implemented real-time analytics dashboard — improved data visualization clarity by 50%</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- WORK / CASE STUDIES -->
+<div id="work" class="section">
+  <div class="section-eyebrow">Work</div>
+  <div class="section-title">Case studies & projects</div>
+
+  <!-- FEATURED CASE STUDY -->
+  <div class="featured-case reveal">
+    <div>
+      <div class="featured-label">✦ Featured Case Study</div>
+      <h3>TravelWonder — Redesigning Travel Discovery for the Inspiration-First Generation</h3>
+      <p>Existing travel apps overwhelm users with search fields before any visual inspiration. TravelWonder pivots to an emotion-first model — high-fidelity destination feeds, mood-based filters, and immersive 360° previews. Conducted surveys with 32 users aged 22–32; ran V1→V2 usability iterations achieving a SUS score of 84.5.</p>
+      <div class="featured-tags">
+        <span class="feat-tag">Figma</span><span class="feat-tag">Mobile iOS</span><span class="feat-tag">User Research</span><span class="feat-tag">Usability Testing</span><span class="feat-tag">WCAG</span><span class="feat-tag">4 Weeks</span>
+      </div>
+      <div class="featured-stats">
+        <div class="fstat"><div class="fstat-num">84.5</div><div class="fstat-label">SUS Score (Grade A)</div></div>
+        <div class="fstat"><div class="fstat-num">100%</div><div class="fstat-label">Task success rate</div></div>
+        <div class="fstat"><div class="fstat-num">2.5×</div><div class="fstat-label">Faster task time (4.5m→1.8m)</div></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:24px;">
+        <a href="case_study.html" target="_blank" class="view-case-btn">Read Case Study →</a>
+        <a href="https://www.figma.com/proto/p0OuoQgeetLtfOdrKFYWiM/Test-for-Candidates?node-id=1-1588&starting-point-node-id=1%3A1588&t=Xs2auAP0mmWDVif5-1" target="_blank" class="view-case-btn" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.12);">Figma Prototype →</a>
+      </div>
+    </div>
+    <div class="featured-right">
+      <div class="process-mini">
+        <div class="pm-step"><div class="pm-num">1</div><div class="pm-text"><h5>Research</h5><p>32 user surveys · Competitor analysis (MakeMyTrip, Booking.com) · 78% users discover via Instagram</p></div></div>
+        <div class="pm-step"><div class="pm-num">2</div><div class="pm-text"><h5>Define</h5><p>Persona: Riya Sharma (24, PM) · Journey map: Dreaming → Planning → Exploring → Booking</p></div></div>
+        <div class="pm-step"><div class="pm-num">3</div><div class="pm-text"><h5>Design</h5><p>Mood-first feed · 360° previews · Sticky CTA · Progressive disclosure replacing date inputs</p></div></div>
+        <div class="pm-step"><div class="pm-num">4</div><div class="pm-text"><h5>Iterate</h5><p>V1→V2: Fixed color contrast (2.2:1 → 4.8:1 WCAG AA) · Added gradient scrim for card legibility</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT CARDS GRID -->
+  <div class="proj-grid">
+    <!-- 1. SafeHer (LEFT HALF WIDTH) -->
+    <div class="proj-card blue reveal">
+      <div class="proj-icon blue">🛡️</div>
+      <div class="proj-title">SafeHer — Women Safety App</div>
+      <div class="proj-stack">Figma · Mobile · UX Research</div>
+      <div class="proj-desc">Designed a premium women's safety mobile app focused on speed, trust, and calm under stress. Features Priya Sharma's dashboard, under-3-second hold SOS emergency alerts, live location sharing with trusted contacts, nearby safety resources (Koramangala Police 0.4km, Manipal Hospital 1.2km), and AI-curated safe routes (Route A: 92% Safety Score).</div>
+      <div class="proj-footer">
+        <span class="proj-metric">Mobile Case Study</span>
+        <a href="https://tidal-meteor-41622976.figma.site/" target="_blank" class="proj-link">Live Site →</a>
+      </div>
+    </div>
+
+    <!-- 2. Spörk (RIGHT HALF WIDTH) -->
+    <div class="proj-card amber reveal">
+      <div class="proj-icon amber">🍝</div>
+      <div class="proj-title">Spörk — Venice Food Delivery App</div>
+      <div class="proj-stack">Figma · iOS/Android · UI/UX Case Study · Design System</div>
+      <div class="proj-desc">Designed a premium Venice-based mobile food delivery app (published under the draft title Perfect Banana Design). Features cinematic canal onboarding, one-tap category menu browsing, 25-35 min delivery predictions for spots like Via Garibaldi 12, and detailed typography design systems (DM Serif Display & DM Sans).</div>
+      <div class="proj-footer">
+        <span class="proj-metric">UI/UX Case Study</span>
+        <div style="display:flex;gap:12px;">
+          <a href="https://float-type-50303253.figma.site/" target="_blank" class="proj-link">Live Site →</a>
+          <a href="https://www.figma.com/design/D8SnCcm0zBcs3ABBnAoT1y/Perfect-Banana-Design" target="_blank" class="proj-link">View Figma →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Kirana (FEATURED - FULL WIDTH) -->
+    <div class="proj-card pink span-2 reveal">
+      <div class="proj-icon pink">🛒</div>
+      <div class="proj-title">Kirana — Hyperlocal E-commerce Marketplace</div>
+      <div class="proj-stack">Figma · Product Comparison · Seller Panel · UPI Payments</div>
+      <div class="proj-desc">Designed India's hyperlocal commerce network connecting buyers and neighborhood Kirana shops. Features 0% commission seller onboarding, a phone dashboard for tracking orders, revenue and bestsellers, secure UPI settlements every 24 hours, and product comparison across 8 categories (Grocery 🌾, Dairy 🥛, Snacks 🍿, Beverages 🥤, Personal Care 🧴, Household 🧹, Medicines 💊, Fruits &amp; Veg 🥦).</div>
+      <div class="proj-footer">
+        <span class="proj-metric">0% Commission · UPI Settlements</span>
+        <a href="https://scuff-horn-28128385.figma.site/" target="_blank" class="proj-link">Live Site →</a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- DESIGN PROCESS -->
+<div id="process" class="section reveal">
+  <div class="section-eyebrow">How I work</div>
+  <div class="section-title">My design process</div>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <h4>Discover</h4>
+      <p>User interviews, stakeholder sessions, heuristic evaluation, competitor analysis, and defining the real problem space.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <h4>Define</h4>
+      <p>Personas, user flows, information architecture, jobs-to-be-done, and aligning with product goals and business constraints.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <h4>Design</h4>
+      <p>Wireframes → high-fidelity mockups → interactive Figma prototypes with component variants, states, and design tokens.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">04</div>
+      <h4>Deliver</h4>
+      <p>Usability testing, A/B testing, WCAG validation, developer handoff, and React/Next.js implementation with measured outcomes.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- SKILLS -->
+<div id="skills" class="section reveal">
+  <div class="section-eyebrow">Skills & Tools</div>
+  <div class="section-title">What I work with</div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-label">Design Tools</div>
+      <div class="tags">
+        <span class="tag">Figma</span><span class="tag">Adobe XD</span><span class="tag">Storybook</span><span class="tag">Auto-layout</span><span class="tag">Variables</span><span class="tag">Prototyping</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-label">UX Methods</div>
+      <div class="tags">
+        <span class="tag">User Research</span><span class="tag">Usability Testing</span><span class="tag">A/B Testing</span><span class="tag">Personas</span><span class="tag">IA</span><span class="tag">WCAG 2.1</span><span class="tag">Journey Mapping</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-label">Development</div>
+      <div class="tags">
+        <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">Angular</span><span class="tag">Redux</span><span class="tag">Docker</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- CERTIFICATIONS -->
+<div class="section reveal">
+  <div class="section-eyebrow">Education & Certifications</div>
+  <div class="section-title">Credentials</div>
+  <div class="certs-grid">
+    <div class="cert-row reveal"><div class="cert-dot">✓</div><div><div class="cert-name">Figma Essential Training</div><div class="cert-by">LinkedIn Learning</div></div></div>
+    <div class="cert-row reveal"><div class="cert-dot">✓</div><div><div class="cert-name">UX Design Fundamentals</div><div class="cert-by">LinkedIn Learning</div></div></div>
+    <div class="cert-row reveal"><div class="cert-dot">✓</div><div><div class="cert-name">Design Systems: The Figma Way</div><div class="cert-by">LinkedIn Learning</div></div></div>
+    <div class="cert-row reveal"><div class="cert-dot">✓</div><div><div class="cert-name">Interaction Design</div><div class="cert-by">LinkedIn Learning</div></div></div>
+    <div class="cert-row reveal"><div class="cert-dot">✓</div><div><div class="cert-name">Web Design Fundamentals</div><div class="cert-by">LinkedIn Learning</div></div></div>
+    <div class="cert-row reveal" style="background:#faf9f6;"><div class="cert-dot" style="background:#fef9c3;border-color:#fde68a;color:#a16207;">🎓</div><div><div class="cert-name">B.Tech — Information Technology</div><div class="cert-by">Viva Institute of Technology, Mumbai · GPA 7.5 · 2025</div></div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <h2>Let's build<br>something great<br><em style="font-style:italic;color:#a8a29e;">together.</em></h2>
+      <p>Open to full-time UI/UX Designer &<br>Product Design Engineer roles.<br>Mumbai-based · Open to remote.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a class="contact-link" href="mailto:rajpurohitrani004@gmail.com"><span class="contact-icon">✉</span> rajpurohitrani004@gmail.com</a>
+      <a class="contact-link" href="tel:+917350258568"><span class="contact-icon">📞</span> +91 73502 58568</a>
+      <a class="contact-link" href="https://github.com/Rani-s123" target="_blank"><span class="contact-icon">⌥</span> GitHub — Rani-s123</a>
+      <a class="contact-link" href="https://www.figma.com/files/team/1423350704732209739/recents-and-sharing" target="_blank"><span class="contact-icon">◈</span> Figma Portfolio</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/" target="_blank"><span class="contact-icon">in</span> LinkedIn Profile</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 Rani Karansing Rajpurohit · Product Designer & Design Engineer · Mumbai, India</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
