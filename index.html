@@ -277,82 +277,120 @@
     }
 
     /* Hero Card */
+    /* Hero Profile Card Redesign */
     .hero-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px;
+      border-radius: 32px;
+      padding: 0;
       position: relative;
       overflow: hidden;
       opacity: 0; animation: slideLeft 1s var(--ease-out) 0.4s forwards;
+      box-shadow: 0 30px 60px rgba(108, 60, 224, 0.05);
+      transition: all 0.4s var(--ease-out);
     }
-    .hero-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+    .hero-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 40px 80px rgba(108, 60, 224, 0.08);
+    }
+    .hero-card-banner {
+      height: 110px;
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5, #fce4ec);
+      position: relative;
+    }
+    .hero-card-content {
+      padding: 0 32px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
     }
     .hero-card-avatar {
-      width: 100px; height: 100px; border-radius: 20px;
-      overflow: hidden; margin-bottom: 24px;
-      border: 2px solid var(--gray-700);
+      width: 120px; height: 120px; border-radius: 50%;
+      overflow: hidden; margin-top: -60px; margin-bottom: 18px;
+      border: 4px solid var(--bg-card);
       position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
     }
     .hero-card-avatar img {
       width: 100%; height: 100%; object-fit: cover;
     }
-    .hero-card-avatar::after {
-      content: ''; position: absolute; bottom: 4px; right: 4px;
-      width: 14px; height: 14px; border-radius: 50%;
+    .hero-card-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 20px;
+      background: rgba(34, 197, 94, 0.08);
+      color: #22c55e;
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+    .hero-card-badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
       background: #22c55e;
-      border: 3px solid var(--bg-card);
-      box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+      box-shadow: 0 0 8px #22c55e;
+      animation: statusPulse 2s infinite;
+    }
+    @keyframes statusPulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
     }
     .hero-card h3 {
       font-family: var(--font-display);
-      font-size: 1.2rem; font-weight: 700;
+      font-size: 1.35rem; font-weight: 700;
       color: var(--white);
       margin-bottom: 4px;
     }
-    .hero-card p {
-      font-size: 0.85rem; color: var(--gray-400);
-      margin-bottom: 28px;
+    .hero-card-subtitle {
+      font-size: 0.85rem; color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
     }
-
-    .hero-metrics {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
+    .hero-card-desc {
+      font-size: 0.82rem; color: var(--gray-400);
+      line-height: 1.5;
+      margin-bottom: 20px;
+      max-width: 280px;
     }
-    .hero-metric { text-align: center; }
-    .hero-metric-val {
-      font-family: var(--font-display);
-      font-size: 1.5rem; font-weight: 700;
+    .hero-card-socials {
+      display: flex; gap: 10px; margin-bottom: 24px;
+    }
+    .hero-card-social-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.01);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-300);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+    .hero-card-social-btn:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
       color: var(--accent);
-      line-height: 1;
+      transform: translateY(-2px);
     }
-    .hero-metric-label {
-      font-size: 0.68rem; color: var(--gray-500);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-top: 6px; font-weight: 600;
-    }
-
     .hero-tools {
-      display: flex; gap: 10px; margin-top: 24px;
-      padding-top: 24px; border-top: 1px solid var(--border);
+      display: flex; justify-content: center; gap: 8px;
+      padding-top: 20px; border-top: 1px solid var(--border);
+      width: 100%;
     }
     .hero-tool {
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 6px 12px;
+      border-radius: 20px;
       background: rgba(0,0,0,0.02);
       border: 1px solid var(--border);
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: var(--gray-300);
-      font-weight: 500;
+      font-weight: 600;
       transition: all 0.3s ease;
     }
     .hero-tool:hover {
-      border-color: var(--border-hover);
-      color: var(--white);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      color: var(--accent);
     }
 
     /* ===== SECTION STYLES ===== */
@@ -874,15 +912,28 @@
       </div>
 
       <div class="hero-card">
-        <div class="hero-card-avatar">
-          <img src="avatar.png" alt="Rani Rajpurohit">
-        </div>
-        <h3>Rani Rajpurohit</h3>
-        <p>UI/UX Designer & Frontend Developer</p>
-        <div class="hero-tools">
-          <span class="hero-tool">🎨 Figma</span>
-          <span class="hero-tool">⚛ React</span>
-          <span class="hero-tool">▲ Next.js</span>
+        <div class="hero-card-banner"></div>
+        <div class="hero-card-content">
+          <div class="hero-card-avatar">
+            <img src="avatar.png" alt="Rani Rajpurohit">
+          </div>
+          <div class="hero-card-badge">
+            <span class="hero-card-badge-dot"></span>
+            Available for work
+          </div>
+          <h3>Rani Rajpurohit</h3>
+          <div class="hero-card-subtitle">UI/UX Designer & Frontend Developer</div>
+          <p class="hero-card-desc">Bridging the gap between clean user-centered designs and functional frontend code.</p>
+          <div class="hero-card-socials">
+            <a href="https://www.linkedin.com/in/rani-rajpurohit-920ab822a/" target="_blank" class="hero-card-social-btn" title="LinkedIn">🔗</a>
+            <a href="https://github.com/Rani-s123" target="_blank" class="hero-card-social-btn" title="GitHub">💻</a>
+            <a href="mailto:rajpurohitrani004@gmail.com" class="hero-card-social-btn" title="Email">📧</a>
+          </div>
+          <div class="hero-tools">
+            <span class="hero-tool">🎨 Figma</span>
+            <span class="hero-tool">⚛ React</span>
+            <span class="hero-tool">▲ Next.js</span>
+          </div>
         </div>
       </div>
     </div>
