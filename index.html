@@ -879,20 +879,6 @@
         </div>
         <h3>Rani Rajpurohit</h3>
         <p>UI/UX Designer & Frontend Developer</p>
-        <div class="hero-metrics">
-          <div class="hero-metric">
-            <div class="hero-metric-val">10K+</div>
-            <div class="hero-metric-label">Users</div>
-          </div>
-          <div class="hero-metric">
-            <div class="hero-metric-val">35%</div>
-            <div class="hero-metric-label">UX Lift</div>
-          </div>
-          <div class="hero-metric">
-            <div class="hero-metric-val">84.5</div>
-            <div class="hero-metric-label">SUS Score</div>
-          </div>
-        </div>
         <div class="hero-tools">
           <span class="hero-tool">🎨 Figma</span>
           <span class="hero-tool">⚛ React</span>
@@ -1138,12 +1124,18 @@
             <span class="skill-group-title">Development</span>
           </div>
           <div class="skill-chips">
-            <span class="skill-chip">HTML5 & CSS3</span>
-            <span class="skill-chip">JavaScript ES6+</span>
             <span class="skill-chip">React.js</span>
             <span class="skill-chip">Next.js</span>
-            <span class="skill-chip">Tailwind</span>
+            <span class="skill-chip">Angular</span>
+            <span class="skill-chip">Node.js</span>
+            <span class="skill-chip">Express.js</span>
+            <span class="skill-chip">MongoDB</span>
+            <span class="skill-chip">JavaScript ES6+</span>
+            <span class="skill-chip">Framer Motion</span>
+            <span class="skill-chip">Tailwind CSS</span>
+            <span class="skill-chip">HTML5 & CSS3</span>
             <span class="skill-chip">Storybook</span>
+            <span class="skill-chip">Git & GitHub</span>
           </div>
         </div>
       </div>
@@ -1275,7 +1267,7 @@
   <div class="footer-links">
     <a href="mailto:rajpurohitrani004@gmail.com">Email</a>
     <a href="https://github.com/Rani-s123" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/rani-rajpurohit" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/rani-rajpurohit-920ab822a/" target="_blank">LinkedIn</a>
   </div>
 </footer>
 
@@ -1334,43 +1326,6 @@
   }, { threshold: 0.25 });
   if (skillBars) barObs.observe(skillBars);
 
-  // Counter animation
-  function animateCounters() {
-    document.querySelectorAll('.hero-metric-val, .stat-val').forEach(el => {
-      const text = el.textContent.trim();
-      const numMatch = text.match(/[\d.]+/);
-      if (!numMatch) return;
-      const target = parseFloat(numMatch[0]);
-      const suffix = text.replace(numMatch[0], '');
-      const prefix = text.indexOf(numMatch[0]) > 0 ? text.substring(0, text.indexOf(numMatch[0])) : '';
-      const isInt = Number.isInteger(target);
-      let start = null;
-      const dur = 1800;
-
-      // preserve inner HTML for accent-num spans
-      const hasSpan = el.querySelector('.accent-num');
-      if (hasSpan) return; // skip stat-val with spans — they look fine static
-
-      function step(ts) {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - p, 4);
-        const cur = target * ease;
-        el.textContent = prefix + (isInt ? Math.round(cur) : cur.toFixed(1)) + suffix;
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
-  }
-
-  const metricObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      animateCounters();
-      metricObs.disconnect();
-    }
-  }, { threshold: 0.4 });
-  const firstMetric = document.querySelector('.hero-metrics');
-  if (firstMetric) metricObs.observe(firstMetric);
 </script>
 
 </body>
