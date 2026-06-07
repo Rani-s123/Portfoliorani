@@ -93,27 +93,32 @@
       background: var(--accent);
       border-radius: 50%;
       position: fixed;
-      left: -20px; top: -20px;
+      left: 0; top: 0;
+      transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 10000;
+      opacity: 0;
       transition: transform 0.2s, opacity 0.2s, background-color 0.2s;
     }
     .custom-cursor-ring {
       width: 30px; height: 30px;
-      border: 1px solid var(--accent);
+      border: 1.5px solid var(--accent);
       border-radius: 50%;
       position: fixed;
-      left: -50px; top: -50px;
+      left: 0; top: 0;
+      transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 9999;
-      transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s, background-color 0.3s;
+      opacity: 0;
+      transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s, background-color 0.3s, opacity 0.3s;
     }
     
     body.cursor-hover .custom-cursor {
-      transform: scale(0);
+      transform: translate(-50%, -50%) scale(0);
       opacity: 0;
     }
     body.cursor-hover .custom-cursor-ring {
+      transform: translate(-50%, -50%);
       width: 48px; height: 48px;
       background: var(--accent-dim);
       border-color: var(--accent);
@@ -303,10 +308,11 @@
     }
 
     .hero-desc {
-      font-size: 1.05rem;
-      color: var(--gray-300);
-      line-height: 1.8;
-      max-width: 520px;
+      font-size: clamp(1.2rem, 2vw, 1.35rem);
+      font-weight: 400;
+      color: var(--gray-400);
+      line-height: 1.6;
+      max-width: 680px;
       margin-bottom: 40px;
       opacity: 0; animation: slideUp 0.8s var(--ease-out) 0.5s forwards;
     }
@@ -1716,6 +1722,7 @@
     let currentTranslate = 0;
     let prevTranslate = 0;
     let startX = 0;
+    let dragDistance = 0;
     
     const getPositionX = (event) => {
       return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
@@ -1724,6 +1731,7 @@
     const dragStart = (event) => {
       isDragging = true;
       startX = getPositionX(event);
+      dragDistance = 0;
       const matrix = new DOMMatrix(window.getComputedStyle(track).transform);
       prevTranslate = matrix.m41;
       track.style.transition = 'none';
@@ -1733,6 +1741,7 @@
       if (!isDragging) return;
       const currentX = getPositionX(event);
       const diff = currentX - startX;
+      dragDistance = Math.abs(diff);
       currentTranslate = prevTranslate + diff;
       
       // Add bounds friction/resistance
@@ -1765,6 +1774,14 @@
         moveToSlide(currentIndex);
       }
     };
+    
+    // Intercept click if drag occurred
+    track.addEventListener('click', (e) => {
+      if (dragDistance > 12) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
     
     // Touch events
     track.addEventListener('touchstart', dragStart, { passive: true });
@@ -1842,12 +1859,19 @@
       let mouseY = 0;
       let ringX = 0;
       let ringY = 0;
+      let cursorVisible = false;
       
       window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         cursor.style.left = mouseX + 'px';
         cursor.style.top = mouseY + 'px';
+        
+        if (!cursorVisible) {
+          cursor.style.opacity = '1';
+          cursorRing.style.opacity = '1';
+          cursorVisible = true;
+        }
       });
       
       const renderCursor = () => {
