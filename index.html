@@ -489,42 +489,75 @@
     }
     .exp-points li strong { color: var(--white); font-weight: 600; }
 
-    /* ===== PROJECTS ===== */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+    /* ===== PROJECTS CAROUSEL (SLIDER) ===== */
+    .projects-carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: visible;
+    }
+
+    .projects-slider-wrapper {
+      overflow: hidden;
+      width: 100%;
+      cursor: grab;
+      border-radius: 24px;
+      padding: 15px 0;
+      margin: -15px 0;
+    }
+    
+    .projects-slider-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .projects-track {
+      display: flex;
       gap: 24px;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
     }
 
     .project {
+      flex: 0 0 calc(50% - 12px);
+      min-width: calc(50% - 12px);
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 20px;
       overflow: hidden;
       transition: all 0.5s var(--ease-out);
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
     }
+
+    @media (max-width: 992px) {
+      .project {
+        flex: 0 0 100%;
+        min-width: 100%;
+      }
+    }
+
     .project:hover {
       border-color: var(--border-hover);
       transform: translateY(-6px);
       box-shadow: 0 20px 40px rgba(108, 60, 224, 0.08);
     }
-    .project.wide { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; }
-    .project.wide .project-visual { min-height: 340px; }
 
     .project-visual {
-      min-height: 220px;
+      min-height: 240px;
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
       transition: all 0.6s var(--ease-out);
     }
 
+    .project-body {
+      padding: 32px;
+      display: flex; flex-direction: column; flex: 1;
+    }
     .project-icon {
       font-size: 4rem; position: relative; z-index: 2;
       filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
       animation: gentleFloat 5s ease-in-out infinite;
     }
-    .project.wide .project-icon { font-size: 5.5rem; }
 
     @keyframes gentleFloat {
       0%, 100% { transform: translateY(0); }
@@ -540,12 +573,61 @@
     .bg-rose { background: linear-gradient(135deg, #fce4ec, #f48fb1, #f06292); }
     .bg-blue { background: linear-gradient(135deg, #e3f2fd, #90caf9, #64b5f6); }
     .bg-emerald { background: linear-gradient(135deg, #e8f5e9, #a5d6a7, #81c784); }
+    .bg-indigo { background: linear-gradient(135deg, #e8eaf6, #9fa8da, #7986cb); }
+    .bg-rose-sunset { background: linear-gradient(135deg, #ffebee, #ff8a80, #ff5252); }
 
-    .project-body {
-      padding: 32px;
-      display: flex; flex-direction: column; flex: 1;
+    /* Carousel controls styling */
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 48px;
     }
-    .project.wide .project-body { padding: 44px; justify-content: center; }
+    
+    .carousel-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.35s var(--ease-out);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    
+    .carousel-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(108, 60, 224, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .carousel-indicators {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gray-600);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .carousel-dot.active {
+      background: var(--accent);
+      transform: scale(1.4);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
 
     .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
     .tag {
@@ -996,165 +1078,193 @@
       <p class="section-desc reveal d2">High-fidelity case studies demonstrating research, design, and engineering craft.</p>
     </div>
 
-    <div class="projects-grid">
-      <!-- TravelWonder -->
-      <div class="project wide reveal">
-        <div class="project-visual">
-          <div class="project-bg bg-teal"></div>
-          <span class="project-icon">✈️</span>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-cyan">Travel</span>
-            <span class="tag tag-green">Mobile App</span>
-            <span class="tag tag-accent">Case Study</span>
+    <div class="projects-carousel-container reveal">
+      <div class="projects-slider-wrapper" id="projectsSliderWrapper">
+        <div class="projects-track" id="projectsTrack">
+          <!-- TravelWonder -->
+          <div class="project">
+            <div class="project-visual">
+              <div class="project-bg bg-teal"></div>
+              <span class="project-icon">✈️</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag tag-cyan">Travel</span>
+                <span class="tag tag-green">Mobile App</span>
+                <span class="tag tag-accent">Case Study</span>
+              </div>
+              <h3 class="project-title">TravelWonder — Inspiration Travel</h3>
+              <p class="project-desc">
+                Rethinking travel discovery from transaction search into emotional exploration. Mood filtering, 360° maps, and progressive disclosure. <strong>100% success rate</strong>.
+              </p>
+              <div class="project-links">
+                <a href="case_study.html" target="_blank" class="project-link project-link-primary">Read Case Study ↗</a>
+                <a href="https://www.figma.com/proto/p0OuoQgeetLtfOdrKFYWiM/Test-for-Candidates?node-id=1-1588&starting-point-node-id=1%3A1588&t=Xs2auAP0mmWDVif5-1" target="_blank" class="project-link project-link-ghost">Figma Prototype</a>
+              </div>
+            </div>
           </div>
-          <h3 class="project-title">TravelWonder — Inspiration-First Travel</h3>
-          <p class="project-desc">
-            Rethinking travel discovery from transaction search into emotional exploration. Mood-based filtering, 360° maps, and progressive disclosure. <strong>100% task success rate</strong> with <strong>84.5 SUS Score</strong>.
-          </p>
-          <div class="project-links">
-            <a href="case_study.html" target="_blank" class="project-link project-link-primary">Read Case Study ↗</a>
-            <a href="https://www.figma.com/proto/p0OuoQgeetLtfOdrKFYWiM/Test-for-Candidates?node-id=1-1588&starting-point-node-id=1%3A1588&t=Xs2auAP0mmWDVif5-1" target="_blank" class="project-link project-link-ghost">Figma Prototype</a>
+
+          <!-- SkillSwap -->
+          <div class="project">
+            <div class="project-visual">
+              <div class="project-bg bg-blue"></div>
+              <span class="project-icon">🤝</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag tag-cyan">SkillSwap</span>
+                <span class="tag tag-blue">Mobile App</span>
+                <span class="tag tag-accent">Case Study</span>
+              </div>
+              <h3 class="project-title">SkillSwap — Local Skill-Building App</h3>
+              <p class="project-desc">
+                A mobile-first, hyper-local platform designed to facilitate cashless skill exchanges and bartering within urban neighbourhoods. <strong>100% task success rate</strong>.
+              </p>
+              <div class="project-links">
+                <a href="https://app-jade-ten-83.vercel.app/" target="_blank" class="project-link project-link-primary">Read Case Study ↗</a>
+                <a href="https://www.figma.com/design/aAUjnGgfyY8OhCNdxEpYpx/TEXT?node-id=0-1&p=f&t=TZ7KnLa9gSimKzQA-0" target="_blank" class="project-link project-link-ghost">Figma Design</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- SafeHer -->
+          <div class="project">
+            <div class="project-visual">
+              <div class="project-bg bg-violet"></div>
+              <span class="project-icon">🛡️</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag tag-rose">Safety</span>
+                <span class="tag tag-accent">Mobile App</span>
+              </div>
+              <h3 class="project-title">SafeHer — Women Safety</h3>
+              <p class="project-desc">
+                Premium safety app with 3-second SOS alerts, live location broadcasts, and predictive AI routes. <strong>92% safety score</strong>.
+              </p>
+              <div class="project-links">
+                <a href="https://tidal-meteor-41622976.figma.site/" target="_blank" class="project-link project-link-primary">Live Prototype ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Spörk -->
+          <div class="project">
+            <div class="project-visual">
+              <div class="project-bg bg-orange"></div>
+              <span class="project-icon">🍝</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag tag-orange">Food App</span>
+                <span class="tag tag-accent">UI Design</span>
+              </div>
+              <h3 class="project-title">Spörk — Venice Food Delivery</h3>
+              <p class="project-desc">
+                Cinematic canal onboarding, sleek catalog navigation, and custom DM Serif typographic hierarchy.
+              </p>
+              <div class="project-links">
+                <a href="https://float-type-50303253.figma.site/" target="_blank" class="project-link project-link-primary">Live Site ↗</a>
+                <a href="https://www.figma.com/design/D8SnCcm0zBcs3ABBnAoT1y/Perfect-Banana-Design" target="_blank" class="project-link project-link-ghost">Design File</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toposel AS -->
+          <div class="project">
+            <div class="project-visual">
+              <div class="project-bg bg-indigo"></div>
+              <span class="project-icon">📊</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag tag-cyan">B2B SaaS</span>
+                <span class="tag tag-accent">Growth Marketing</span>
+              </div>
+              <h3 class="project-title">Toposel AS — B2B Growth Platform</h3>
+              <p class="project-desc">
+                Designed a data-led growth marketing platform to track user acquisition campaigns, client conversions, and dynamic attribution dashboards.
+              </p>
+              <div class="project-links">
+                <a href="https://www.figma.com/design/GqvPVk0UXNBD05toXpw4mN/Toposel-AS?node-id=9763-1431" target="_blank" class="project-link project-link-primary">Figma File ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sort My Scene -->
+          <div class="project">
+            <div class="project-visual">
+              <div class="project-bg bg-rose-sunset"></div>
+              <span class="project-icon">🎟️</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag tag-rose">Ticketing</span>
+                <span class="tag tag-accent">Mobile UI/UX</span>
+              </div>
+              <h3 class="project-title">Sort My Scene — Event Ticketing</h3>
+              <p class="project-desc">
+                Designed a modern ticketing ecosystem and fast-track entry facilitation system for major events, optimizing onboarding & checkout.
+              </p>
+              <div class="project-links">
+                <a href="https://www.figma.com/design/Hi7808EfrjOM3XYIOtRN85/Sort-My-Scene?node-id=0-1" target="_blank" class="project-link project-link-primary">Figma File ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- IOsense -->
+          <div class="project">
+            <div class="project-visual">
+              <div class="project-bg bg-blue"></div>
+              <span class="project-icon">📡</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag tag-cyan">Dashboard</span>
+                <span class="tag tag-accent">React / Next</span>
+              </div>
+              <h3 class="project-title">IOsense — IoT Analytics</h3>
+              <p class="project-desc">
+                Custom energy dashboard for <strong>10,000+ users</strong> with interactive grids, real-time charts, and customizable thresholds.
+              </p>
+              <div class="project-links">
+                <a href="https://factory-digital-twin-w8rz.vercel.app/dashboard" target="_blank" class="project-link project-link-primary">Preview ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart Utility -->
+          <div class="project">
+            <div class="project-visual">
+              <div class="project-bg bg-emerald"></div>
+              <span class="project-icon">⚡</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag tag-green">IoT Utility</span>
+                <span class="tag tag-accent">Angular</span>
+              </div>
+              <h3 class="project-title">Smart Utility — Energy Monitoring</h3>
+              <p class="project-desc">
+                Live meter integration dashboards for micro-grid operations with predictive analytics.
+              </p>
+              <div class="project-links">
+                <a href="https://smart-utility-one.vercel.app/" target="_blank" class="project-link project-link-primary">Live Site ↗</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-
-      <!-- TravelWonder -->
-      <div class="project wide reveal">
-        <div class="project-visual">
-          <div class="project-bg bg-teal"></div>
-          <span class="project-icon"></span>
-        </div>
- 
-      <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-cyan">SkillSwap</span>
-            <span class="tag tag-blue">Mobile App</span>
-            <span class="tag tag-accent">Case Study</span>
-          </div>
-          <h3 class="project-title">Localised Skill-Building & Bartering App</h3>
-          <p class="project-desc">
-            SkillSwap is a mobile-first, hyper-local platform designed to facilitate cashless skill exchanges and
-bartering within urban neighbourhoods. In an economy characterised by high living costs,
-underemployment, and a growing interest in self-learning, SkillSwap enables community members to
-leverage their talents as a secondary "currency" — trading skills directly for valuable services instead of
-money. <strong>100% task success rate</strong> with <strong>84.5 SUS Score</strong>.
-          </p>
-          <div class="project-links">
-            <a href="https://app-jade-ten-83.vercel.app/" target="_blank" class="project-link project-link-primary">Read Case Study ↗</a>
-            <a href="https://www.figma.com/design/aAUjnGgfyY8OhCNdxEpYpx/TEXT?node-id=0-1&p=f&t=TZ7KnLa9gSimKzQA-0">Figma Prototype</a>
-          </div>
-        </div>
-      </div>
-  
-
-      <!-- SafeHer -->
-      <div class="project reveal">
-        <div class="project-visual">
-          <div class="project-bg bg-violet"></div>
-          <span class="project-icon">🛡️</span>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-rose">Safety</span>
-            <span class="tag tag-accent">Mobile App</span>
-          </div>
-          <h3 class="project-title">SafeHer — Women Safety</h3>
-          <p class="project-desc">
-            Premium safety app with 3-second SOS alerts, live location broadcasts, and predictive AI routes. <strong>92% safety score</strong>.
-          </p>
-          <div class="project-links">
-            <a href="https://tidal-meteor-41622976.figma.site/" target="_blank" class="project-link project-link-primary">Live Prototype ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Spörk -->
-      <div class="project reveal d1">
-        <div class="project-visual">
-          <div class="project-bg bg-orange"></div>
-          <span class="project-icon">🍝</span>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-orange">Food App</span>
-            <span class="tag tag-accent">UI Design</span>
-          </div>
-          <h3 class="project-title">Spörk — Venice Food Delivery</h3>
-          <p class="project-desc">
-            Cinematic canal onboarding, sleek catalog navigation, and custom DM Serif typographic hierarchy.
-          </p>
-          <div class="project-links">
-            <a href="https://float-type-50303253.figma.site/" target="_blank" class="project-link project-link-primary">Live Site ↗</a>
-            <a href="https://www.figma.com/design/D8SnCcm0zBcs3ABBnAoT1y/Perfect-Banana-Design" target="_blank" class="project-link project-link-ghost">Design File</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Kirana -->
-      <div class="project wide reveal">
-        <div class="project-visual">
-          <div class="project-bg bg-rose"></div>
-          <span class="project-icon">🛒</span>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-rose">Hyperlocal</span>
-            <span class="tag tag-accent">E-Commerce</span>
-            <span class="tag tag-cyan">Seller Panel</span>
-          </div>
-          <h3 class="project-title">Kirana — Local Commerce Marketplace</h3>
-          <p class="project-desc">
-            Connecting consumers and neighborhood shops. Commission onboarding, order monitoring, secure UPI payouts, and detailed grid displays.
-          </p>
-          <div class="project-links">
-            <a href="https://scuff-horn-28128385.figma.site/" target="_blank" class="project-link project-link-primary">Live Prototype ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- IOsense -->
-      <div class="project reveal">
-        <div class="project-visual">
-          <div class="project-bg bg-blue"></div>
-          <span class="project-icon">📡</span>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-cyan">Dashboard</span>
-            <span class="tag tag-accent">React / Next</span>
-          </div>
-          <h3 class="project-title">IOsense — IoT Analytics</h3>
-          <p class="project-desc">
-            Custom energy dashboard for <strong>10,000+ users</strong> with interactive grids, real-time charts, and customizable thresholds.
-          </p>
-          <div class="project-links">
-            <a href="https://factory-digital-twin-w8rz.vercel.app/dashboard" target="_blank" class="project-link project-link-primary">Preview ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Smart Utility -->
-      <div class="project reveal d1">
-        <div class="project-visual">
-          <div class="project-bg bg-emerald"></div>
-          <span class="project-icon">⚡</span>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-green">IoT Utility</span>
-            <span class="tag tag-accent">Angular</span>
-          </div>
-          <h3 class="project-title">Smart Utility — Energy Monitoring</h3>
-          <p class="project-desc">
-            Live meter integration dashboards for micro-grid operations with predictive analytics.
-          </p>
-          <div class="project-links">
-            <a href="https://smart-utility-one.vercel.app/" target="_blank" class="project-link project-link-primary">Live Site ↗</a>
-          </div>
-        </div>
+      <!-- Carousel Controls -->
+      <div class="carousel-controls">
+        <button class="carousel-btn prev-btn" aria-label="Previous Project">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <div class="carousel-indicators"></div>
+        <button class="carousel-btn next-btn" aria-label="Next Project">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -1407,6 +1517,161 @@ money. <strong>100% task success rate</strong> with <strong>84.5 SUS Score</stro
   }, { threshold: 0.25 });
   if (skillBars) barObs.observe(skillBars);
 
+  // Projects Slider Logic
+  const track = document.getElementById('projectsTrack');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const indicatorsContainer = document.querySelector('.carousel-indicators');
+  
+  if (track && prevBtn && nextBtn && indicatorsContainer) {
+    const slides = Array.from(track.children);
+    let currentIndex = 0;
+    
+    // Calculate visible slides
+    const getVisibleSlidesCount = () => {
+      return window.innerWidth > 992 ? 2 : 1;
+    };
+    
+    const maxIndex = () => {
+      const visibleCount = getVisibleSlidesCount();
+      return Math.max(0, slides.length - visibleCount);
+    };
+    
+    // Create indicators
+    const updateIndicators = () => {
+      indicatorsContainer.innerHTML = '';
+      const visibleCount = getVisibleSlidesCount();
+      const dotCount = slides.length - visibleCount + 1;
+      
+      for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('carousel-dot');
+        if (i === currentIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          moveToSlide(currentIndex);
+        });
+        indicatorsContainer.appendChild(dot);
+      }
+    };
+    
+    const moveToSlide = (index) => {
+      const maxIdx = maxIndex();
+      if (index < 0) index = 0;
+      if (index > maxIdx) index = maxIdx;
+      
+      currentIndex = index;
+      
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      const gap = 24; // matching CSS gap
+      const offset = currentIndex * (slideWidth + gap);
+      
+      track.style.transform = `translateX(-${offset}px)`;
+      
+      // Update dots
+      const dots = Array.from(indicatorsContainer.children);
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+      
+      // Update buttons
+      prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
+      prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+      
+      nextBtn.style.opacity = currentIndex === maxIdx ? '0.4' : '1';
+      nextBtn.style.pointerEvents = currentIndex === maxIdx ? 'none' : 'auto';
+    };
+    
+    prevBtn.addEventListener('click', () => {
+      moveToSlide(currentIndex - 1);
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      moveToSlide(currentIndex + 1);
+    });
+    
+    // Responsive adjust
+    window.addEventListener('resize', () => {
+      updateIndicators();
+      moveToSlide(currentIndex);
+    });
+    
+    // Touch & Mouse Dragging Support
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let startX = 0;
+    
+    const getPositionX = (event) => {
+      return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    };
+    
+    const dragStart = (event) => {
+      isDragging = true;
+      startX = getPositionX(event);
+      const matrix = new DOMMatrix(window.getComputedStyle(track).transform);
+      prevTranslate = matrix.m41;
+      track.style.transition = 'none';
+    };
+    
+    const dragMove = (event) => {
+      if (!isDragging) return;
+      const currentX = getPositionX(event);
+      const diff = currentX - startX;
+      currentTranslate = prevTranslate + diff;
+      
+      // Add bounds friction/resistance
+      const maxTranslate = 0;
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      const gap = 24;
+      const minTranslate = -maxIndex() * (slideWidth + gap);
+      
+      if (currentTranslate > maxTranslate) {
+        currentTranslate = maxTranslate + (currentTranslate - maxTranslate) * 0.3;
+      } else if (currentTranslate < minTranslate) {
+        currentTranslate = minTranslate + (currentTranslate - minTranslate) * 0.3;
+      }
+      
+      track.style.transform = `translateX(${currentTranslate}px)`;
+    };
+    
+    const dragEnd = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      
+      const movedBy = currentTranslate - prevTranslate;
+      
+      if (movedBy < -100) {
+        moveToSlide(currentIndex + 1);
+      } else if (movedBy > 100) {
+        moveToSlide(currentIndex - 1);
+      } else {
+        moveToSlide(currentIndex);
+      }
+    };
+    
+    // Touch events
+    track.addEventListener('touchstart', dragStart, { passive: true });
+    track.addEventListener('touchend', dragEnd);
+    track.addEventListener('touchmove', dragMove, { passive: true });
+    
+    // Mouse events
+    track.addEventListener('mousedown', dragStart);
+    track.addEventListener('mouseup', dragEnd);
+    track.addEventListener('mouseleave', dragEnd);
+    track.addEventListener('mousemove', dragMove);
+    
+    // Prevent dragging links/images inside track
+    track.querySelectorAll('a, img').forEach(el => {
+      el.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+    
+    // Initialize
+    updateIndicators();
+    moveToSlide(0);
+  }
 </script>
 
 </body>
