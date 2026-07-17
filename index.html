@@ -14,26 +14,27 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #faf9f6;
+      --bg: #fdfaf6;
       --bg-elevated: #ffffff;
-      --bg-card: rgba(255, 255, 255, 0.7);
-      --bg-card-hover: rgba(255, 255, 255, 0.85);
-      --accent: #6c3ce0;
-      --accent-dim: rgba(108, 60, 224, 0.06);
-      --accent-glow: rgba(108, 60, 224, 0.12);
-      --white: #111111;
-      --gray-100: #1a1a1a;
-      --gray-200: #2d2d2d;
-      --gray-300: #525252;
-      --gray-400: #737373;
-      --gray-500: #a3a3a3;
-      --gray-600: #e5e5e5;
-      --gray-700: #f5f5f5;
-      --border: rgba(0, 0, 0, 0.04);
-      --border-hover: rgba(108, 60, 224, 0.2);
-      --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.02), 0 4px 16px -8px rgba(0, 0, 0, 0.04);
-      --shadow-md: 0 4px 24px -4px rgba(0, 0, 0, 0.03), 0 12px 32px -4px rgba(108, 60, 224, 0.04);
-      --shadow-lg: 0 16px 48px -12px rgba(0, 0, 0, 0.04), 0 24px 64px -16px rgba(108, 60, 224, 0.06);
+      --bg-card: rgba(255, 252, 246, 0.75);
+      --bg-card-hover: rgba(255, 252, 246, 0.92);
+      --accent: #d4782a;
+      --accent-deep: #b85e1a;
+      --accent-dim: rgba(212, 120, 42, 0.08);
+      --accent-glow: rgba(212, 120, 42, 0.18);
+      --white: #1a1108;
+      --gray-100: #221608;
+      --gray-200: #3d2e18;
+      --gray-300: #5c4a30;
+      --gray-400: #7d6848;
+      --gray-500: #a8926e;
+      --gray-600: #e8dcc8;
+      --gray-700: #f5f0e8;
+      --border: rgba(100, 70, 20, 0.07);
+      --border-hover: rgba(212, 120, 42, 0.25);
+      --shadow-sm: 0 2px 8px -2px rgba(60, 35, 5, 0.04), 0 4px 16px -8px rgba(60, 35, 5, 0.06);
+      --shadow-md: 0 4px 24px -4px rgba(60, 35, 5, 0.05), 0 12px 32px -4px rgba(212, 120, 42, 0.06);
+      --shadow-lg: 0 16px 48px -12px rgba(60, 35, 5, 0.06), 0 24px 64px -16px rgba(212, 120, 42, 0.10);
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-display: 'Space Grotesk', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
@@ -46,10 +47,10 @@
     body {
       background: var(--bg);
       background-image: 
-        radial-gradient(at 0% 0%, rgba(243, 229, 245, 0.4) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(227, 242, 253, 0.4) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(252, 228, 236, 0.4) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(240, 244, 195, 0.2) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(255, 235, 200, 0.5) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(255, 220, 170, 0.3) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(240, 200, 150, 0.25) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(255, 245, 220, 0.3) 0px, transparent 50%);
       background-size: 200% 200%;
       animation: meshFlow 30s ease infinite alternate;
       color: var(--gray-200);
@@ -668,6 +669,59 @@
     .bg-indigo { background: linear-gradient(135deg, #e8eaf6, #9fa8da, #7986cb); }
     .bg-rose-sunset { background: linear-gradient(135deg, #ffebee, #ff8a80, #ff5252); }
 
+    /* Project image preview */
+    .project-preview-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .project:hover .project-preview-img { transform: scale(1.05); }
+
+    /* Stats proof row */
+    .stats-proof {
+      display: flex; gap: 0; margin-bottom: 48px;
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+    }
+    .stat-proof-item {
+      flex: 1; padding: 24px 20px; text-align: center;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+    .stat-proof-item:last-child { border-right: none; }
+    .stat-proof-item:hover { background: var(--accent-dim); }
+    .stat-proof-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-proof-label {
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    /* Hero ticker */
+    .hero-ticker {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(212, 120, 42, 0.15);
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 28px;
+      opacity: 0; animation: slideUp 0.8s var(--ease-out) 0.1s forwards;
+    }
+    .hero-ticker-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent);
+      animation: statusPulse 2s infinite;
+    }
+
     /* Carousel controls styling */
     .carousel-controls {
       display: flex;
@@ -729,12 +783,13 @@
       text-transform: uppercase; letter-spacing: 0.04em;
       border: 1px solid var(--border);
     }
-    .tag-accent { background: var(--accent-dim); color: var(--accent); border-color: rgba(108,60,224,0.15); }
-    .tag-neutral { background: rgba(0,0,0,0.03); color: var(--gray-400); }
+    .tag-accent { background: var(--accent-dim); color: var(--accent); border-color: rgba(212,120,42,0.18); }
+    .tag-neutral { background: rgba(60,35,5,0.03); color: var(--gray-400); }
     .tag-green { background: rgba(34,197,94,0.08); color: #22c55e; border-color: rgba(34,197,94,0.15); }
     .tag-cyan { background: rgba(6,182,212,0.08); color: #06b6d4; border-color: rgba(6,182,212,0.15); }
     .tag-rose { background: rgba(244,63,94,0.08); color: #f43f5e; border-color: rgba(244,63,94,0.15); }
-    .tag-orange { background: rgba(249,115,22,0.08); color: #f97316; border-color: rgba(249,115,22,0.15); }
+    .tag-orange { background: rgba(212,120,42,0.08); color: var(--accent); border-color: rgba(212,120,42,0.18); }
+    .tag-blue { background: rgba(59,130,246,0.08); color: #3b82f6; border-color: rgba(59,130,246,0.15); }
 
     .project-title {
       font-family: var(--font-display);
@@ -1102,6 +1157,10 @@
     <div class="container">
       <div class="hero-inner">
         <div>
+          <div class="hero-ticker">
+            <span class="hero-ticker-dot"></span>
+            Currently designing: Setu · Financial inclusion for gig workers
+          </div>
           <div class="hero-eyebrow">
             <span class="hero-eyebrow-line"></span>
             Available for work
@@ -1109,10 +1168,12 @@
           <h1 class="hero-heading">
             Designing products<br>
             people <span class="accent">love</span> to use.
+            <span class="thin">Mumbai-based Product Designer who also writes the code.<br>
+            From fintech to IoT — I bridge design systems with engineering craft.</span>
           </h1>
           <p class="hero-desc">
-            Product Designer & Frontend Engineer based in Mumbai, India.<br>
-            Specializing in design systems, high-fidelity prototypes, and premium web experiences.
+            Turning complex problems into <strong>intuitive, beautiful interfaces</strong> —<br>
+            then shipping them with clean, production-ready frontend code.
           </p>
           <div class="hero-btns">
             <a href="#projects" class="btn btn-primary magnetic"><span class="magnetic-inner">View Projects ↓</span></a>
@@ -1228,7 +1289,7 @@
     <div class="section-header">
       <div class="section-label reveal">Work</div>
       <h2 class="section-title reveal d1">Selected <span class="accent">Projects</span></h2>
-      <p class="section-desc reveal d2">High-fidelity case studies demonstrating research, design, and engineering craft.</p>
+<p class="section-desc reveal d2">High-fidelity case studies demonstrating research, design, and engineering craft.</p>
     </div>
 
     <div class="projects-carousel-container reveal">
@@ -1236,9 +1297,8 @@
         <div class="projects-track" id="projectsTrack">
           <!-- TravelWonder -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg bg-teal"></div>
-              <span class="project-icon">✈️</span>
+            <div class="project-visual" style="padding:0;overflow:hidden;">
+              <img src="images/preview_travelwonder.png" alt="TravelWonder app UI" class="project-preview-img">
             </div>
             <div class="project-body">
               <div class="project-tags">
@@ -1259,9 +1319,8 @@
 
           <!-- Setu -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg" style="background: linear-gradient(135deg, #f4e4e0, #d9b876, #7c2e2a);"></div>
-              <span class="project-icon">🏦</span>
+            <div class="project-visual" style="padding:0;overflow:hidden;">
+              <img src="images/preview_setu.png" alt="Setu fintech app UI" class="project-preview-img">
             </div>
             <div class="project-body">
               <div class="project-tags">
@@ -1281,13 +1340,12 @@
 
           <!-- SkillSwap -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg bg-blue"></div>
-              <span class="project-icon">🤝</span>
+            <div class="project-visual" style="padding:0;overflow:hidden;">
+              <img src="images/preview_skillswap.png" alt="SkillSwap app UI" class="project-preview-img">
             </div>
             <div class="project-body">
               <div class="project-tags">
-                <span class="tag tag-cyan">SkillSwap</span>
+                <span class="tag tag-cyan">Community</span>
                 <span class="tag tag-blue">Mobile App</span>
                 <span class="tag tag-accent">Case Study</span>
               </div>
@@ -1304,9 +1362,8 @@
 
           <!-- SafeHer -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg bg-violet"></div>
-              <span class="project-icon">🛡️</span>
+            <div class="project-visual" style="padding:0;overflow:hidden;">
+              <img src="images/preview_safeher.png" alt="SafeHer women safety app UI" class="project-preview-img">
             </div>
             <div class="project-body">
               <div class="project-tags">
@@ -1325,9 +1382,8 @@
 
           <!-- Spörk -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg bg-orange"></div>
-              <span class="project-icon">🍝</span>
+            <div class="project-visual" style="padding:0;overflow:hidden;">
+              <img src="images/preview_spork.png" alt="Spörk food delivery app UI" class="project-preview-img">
             </div>
             <div class="project-body">
               <div class="project-tags">
@@ -1347,9 +1403,8 @@
 
           <!-- Toposel AS -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg bg-indigo"></div>
-              <span class="project-icon">📊</span>
+            <div class="project-visual" style="padding:0;overflow:hidden;">
+              <img src="images/preview_toposel.png" alt="Toposel AS B2B dashboard UI" class="project-preview-img">
             </div>
             <div class="project-body">
               <div class="project-tags">
@@ -1368,9 +1423,17 @@
 
           <!-- Sort My Scene -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg bg-rose-sunset"></div>
-              <span class="project-icon">🎟️</span>
+            <div class="project-visual" style="min-height:240px; background: linear-gradient(135deg, #1a0a1e, #3d1066, #7b2fff); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+              <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%, rgba(255,80,120,0.35), transparent 60%), radial-gradient(circle at 80% 20%, rgba(123,47,255,0.4), transparent 50%);"></div>
+              <div style="position:relative;z-index:2;text-align:center;padding:20px;">
+                <div style="font-size:2.2rem;margin-bottom:10px;">🎟️</div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:-0.02em;">Sort My Scene</div>
+                <div style="display:flex;gap:6px;justify-content:center;margin-top:10px;">
+                  <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;">🎵</div>
+                  <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,80,120,0.25);border:1px solid rgba(255,80,120,0.4);display:flex;align-items:center;justify-content:center;font-size:1rem;">🎭</div>
+                  <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;">🏟️</div>
+                </div>
+              </div>
             </div>
             <div class="project-body">
               <div class="project-tags">
@@ -1379,7 +1442,7 @@
               </div>
               <h3 class="project-title">Sort My Scene — Event Ticketing</h3>
               <p class="project-desc">
-                Designed a modern ticketing ecosystem and fast-track entry facilitation system for major events, optimizing onboarding & checkout.
+                Designed a modern ticketing ecosystem and fast-track entry facilitation system for major events, optimizing onboarding &amp; checkout.
               </p>
               <div class="project-links">
                 <a href="https://www.figma.com/design/Hi7808EfrjOM3XYIOtRN85/Sort-My-Scene?node-id=0-1" target="_blank" class="project-link project-link-primary">Figma File ↗</a>
@@ -1389,9 +1452,30 @@
 
           <!-- Factory Digital Twin -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg bg-indigo"></div>
-              <span class="project-icon">🏭</span>
+            <div class="project-visual" style="min-height:240px; background: linear-gradient(135deg, #050d1a, #0a1f3d, #0d2e5c); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+              <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(0,180,255,0.08), transparent 70%);"></div>
+              <div style="position:relative;z-index:2;width:88%;padding:12px;">
+                <div style="display:flex;gap:8px;margin-bottom:10px;">
+                  <div style="flex:1;background:rgba(0,180,255,0.12);border:1px solid rgba(0,180,255,0.25);border-radius:8px;padding:8px;text-align:center;">
+                    <div style="font-size:0.65rem;color:rgba(0,180,255,0.8);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">OEE</div>
+                    <div style="font-size:1.1rem;font-weight:800;color:#00b4ff;font-family:'Space Grotesk',sans-serif;">87.3%</div>
+                  </div>
+                  <div style="flex:1;background:rgba(0,255,128,0.08);border:1px solid rgba(0,255,128,0.2);border-radius:8px;padding:8px;text-align:center;">
+                    <div style="font-size:0.65rem;color:rgba(0,255,128,0.8);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Online</div>
+                    <div style="font-size:1.1rem;font-weight:800;color:#00ff80;font-family:'Space Grotesk',sans-serif;">12/14</div>
+                  </div>
+                  <div style="flex:1;background:rgba(255,160,0,0.08);border:1px solid rgba(255,160,0,0.2);border-radius:8px;padding:8px;text-align:center;">
+                    <div style="font-size:0.65rem;color:rgba(255,160,0,0.8);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Alerts</div>
+                    <div style="font-size:1.1rem;font-weight:800;color:#ffa000;font-family:'Space Grotesk',sans-serif;">3</div>
+                  </div>
+                </div>
+                <div style="height:60px;background:rgba(0,180,255,0.05);border:1px solid rgba(0,180,255,0.15);border-radius:8px;overflow:hidden;position:relative;">
+                  <svg viewBox="0 0 200 60" preserveAspectRatio="none" style="width:100%;height:100%;position:absolute;inset:0;">
+                    <polyline points="0,45 25,30 50,38 75,20 100,32 125,15 150,28 175,18 200,25" fill="none" stroke="#00b4ff" stroke-width="2" opacity="0.9"/>
+                    <polyline points="0,50 25,42 50,48 75,35 100,45 125,28 150,40 175,30 200,36" fill="none" stroke="#00ff80" stroke-width="1.5" opacity="0.6"/>
+                  </svg>
+                </div>
+              </div>
             </div>
             <div class="project-body">
               <div class="project-tags">
@@ -1411,9 +1495,30 @@
 
           <!-- Smart Utility -->
           <div class="project">
-            <div class="project-visual">
-              <div class="project-bg bg-emerald"></div>
-              <span class="project-icon">⚡</span>
+            <div class="project-visual" style="min-height:240px; background: linear-gradient(135deg, #051a0d, #0d3320, #0f4a2a); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+              <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 60%, rgba(0,230,80,0.1), transparent 65%);"></div>
+              <div style="position:relative;z-index:2;width:88%;padding:12px;">
+                <div style="display:flex;gap:8px;margin-bottom:10px;">
+                  <div style="flex:1;background:rgba(0,230,80,0.1);border:1px solid rgba(0,230,80,0.2);border-radius:8px;padding:8px;text-align:center;">
+                    <div style="font-size:0.6rem;color:rgba(0,230,80,0.8);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">Today</div>
+                    <div style="font-size:1.05rem;font-weight:800;color:#00e650;font-family:'Space Grotesk',sans-serif;">142 kWh</div>
+                  </div>
+                  <div style="flex:1;background:rgba(255,220,0,0.08);border:1px solid rgba(255,220,0,0.2);border-radius:8px;padding:8px;text-align:center;">
+                    <div style="font-size:0.6rem;color:rgba(255,220,0,0.8);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">Solar</div>
+                    <div style="font-size:1.05rem;font-weight:800;color:#ffdc00;font-family:'Space Grotesk',sans-serif;">68%</div>
+                  </div>
+                  <div style="flex:1;background:rgba(0,200,255,0.08);border:1px solid rgba(0,200,255,0.15);border-radius:8px;padding:8px;text-align:center;">
+                    <div style="font-size:0.6rem;color:rgba(0,200,255,0.8);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">CO₂ saved</div>
+                    <div style="font-size:1.05rem;font-weight:800;color:#00c8ff;font-family:'Space Grotesk',sans-serif;">38 kg</div>
+                  </div>
+                </div>
+                <div style="height:60px;background:rgba(0,230,80,0.05);border:1px solid rgba(0,230,80,0.15);border-radius:8px;overflow:hidden;position:relative;">
+                  <svg viewBox="0 0 200 60" preserveAspectRatio="none" style="width:100%;height:100%;position:absolute;inset:0;">
+                    <polyline points="0,50 20,42 40,30 60,38 80,22 100,28 120,18 140,25 160,15 180,22 200,18" fill="none" stroke="#00e650" stroke-width="2" opacity="0.9"/>
+                    <polyline points="0,55 20,52 40,48 60,50 80,42 100,45 120,38 140,42 160,35 180,40 200,36" fill="none" stroke="#ffdc00" stroke-width="1.5" opacity="0.5"/>
+                  </svg>
+                </div>
+              </div>
             </div>
             <div class="project-body">
               <div class="project-tags">
@@ -1430,7 +1535,6 @@
             </div>
           </div>
         </div>
-      </div>
 
       <!-- Carousel Controls -->
       <div class="carousel-controls">
@@ -1457,6 +1561,25 @@
       <div class="section-label reveal">Expertise</div>
       <h2 class="section-title reveal d1">Capabilities & <span class="accent">Tools</span></h2>
       <p class="section-desc reveal d2">End-to-end design-to-code skills that unify beautiful UI craft with developer-centric systems.</p>
+    </div>
+
+    <div class="stats-proof reveal">
+      <div class="stat-proof-item">
+        <div class="stat-proof-num">9+</div>
+        <div class="stat-proof-label">Projects Shipped</div>
+      </div>
+      <div class="stat-proof-item">
+        <div class="stat-proof-num">2+</div>
+        <div class="stat-proof-label">Years Experience</div>
+      </div>
+      <div class="stat-proof-item">
+        <div class="stat-proof-num">3</div>
+        <div class="stat-proof-label">Internships</div>
+      </div>
+      <div class="stat-proof-item">
+        <div class="stat-proof-num">15+</div>
+        <div class="stat-proof-label">User Interviews</div>
+      </div>
     </div>
 
     <div class="skills-grid">
