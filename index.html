@@ -787,15 +787,22 @@
       color: var(--white);
     }
 
-    /* ===== SKILLS ===== */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 64px;
-      align-items: start;
-    }
+     /* ===== SKILLS ===== */
+     .skills-grid {
+       display: grid;
+       grid-template-columns: repeat(3, 1fr);
+       gap: 32px;
+       align-items: start;
+     }
 
-    .skill-group {
+     @media (max-width: 992px) {
+       .skills-grid {
+         grid-template-columns: 1fr;
+         gap: 24px;
+       }
+     }
+
+     .skill-group {
       background: var(--bg-card);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -1378,33 +1385,34 @@
 
           <!-- Sort My Scene -->
           <div class="project">
-            <div class="project-visual" style="min-height:240px; background: #0c0813; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding: 20px;">
-              <div style="position:absolute;inset:0;background:radial-gradient(circle at 10% 20%, rgba(255,47,150,0.15), transparent 50%), radial-gradient(circle at 90% 80%, rgba(123,47,255,0.2), transparent 55%);"></div>
-              <!-- High-Fidelity UI Ticket Stub Mockup -->
-              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; width: 85%; padding: 14px; position:relative; backdrop-filter: blur(8px); box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
-                <!-- Ticket Notch Left/Right -->
-                <div style="position:absolute; left:-7px; top:50%; transform:translateY(-50%); width:12px; height:12px; border-radius:50%; background:#0c0813; border-right: 1px solid rgba(255, 255, 255, 0.08);"></div>
-                <div style="position:absolute; right:-7px; top:50%; transform:translateY(-50%); width:12px; height:12px; border-radius:50%; background:#0c0813; border-left: 1px solid rgba(255, 255, 255, 0.08);"></div>
-                
-                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px dashed rgba(255,255,255,0.15); padding-bottom:10px; margin-bottom:10px;">
-                  <div>
-                    <span style="font-size:7px; color:rgba(255,255,255,0.5); font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">Event Ticket</span>
-                    <h5 style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; color:#fff; margin-top:2px;">KOLKATA MUSIC FEST</h5>
+            <div class="project-visual" style="min-height:240px; background: linear-gradient(135deg, #ff6b8b, #ff8e53); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding: 20px;">
+              <div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2), transparent 40%);"></div>
+              <!-- Floating Phone Frame Mockup -->
+              <div style="width: 140px; height: 210px; background: #fff; border-radius: 20px; box-shadow: 0 12px 28px rgba(0,0,0,0.22); padding: 8px; display:flex; flex-direction:column; position:relative; border: 3px solid #1a1108;">
+                <!-- Notch -->
+                <div style="width: 45px; height: 8px; background: #1a1108; border-radius: 0 0 6px 6px; position:absolute; top:0; left:50%; transform:translateX(-50%); z-index:10;"></div>
+                <!-- App Screen -->
+                <div style="flex:1; background:#0c0813; border-radius:12px; overflow:hidden; padding:10px 6px 6px; display:flex; flex-direction:column; justify-content:space-between; position:relative;">
+                  <div style="border-bottom:1px dashed rgba(255,255,255,0.15); padding-bottom:6px; margin-top:2px;">
+                    <span style="font-size:5px; color:#ff8e53; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Sort My Scene</span>
+                    <h5 style="font-size:8px; font-weight:800; color:#fff; margin-top:1px; line-height:1.1;">KOLKATA FEST</h5>
                   </div>
-                  <span style="font-size:12px; filter: drop-shadow(0 0 5px rgba(255,47,150,0.6));">🎟️</span>
-                </div>
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <div>
-                    <span style="font-size:6.5rem; color:rgba(255,255,255,0.4); font-size:7px; text-transform:uppercase;">Gate / Row</span>
-                    <p style="font-size:10px; font-weight:700; color:#ff2f96; font-family:'JetBrains Mono',monospace; margin-top:1px;">A3 / Row 12</p>
-                  </div>
-                  <div style="text-align:right;">
-                    <span style="font-size:7px; color:rgba(255,255,255,0.4); text-transform:uppercase;">Entry Code</span>
-                    <div style="display:flex; gap:2px; justify-content:flex-end; margin-top:2px;">
-                      <div style="width:20px; height:6px; background:#fff; opacity:0.8;"></div>
-                      <div style="width:4px; height:6px; background:#fff; opacity:0.8;"></div>
-                      <div style="width:12px; height:6px; background:#fff; opacity:0.8;"></div>
-                      <div style="width:8px; height:6px; background:#fff; opacity:0.8;"></div>
+                  <!-- Ticket Notch Left/Right -->
+                  <div style="position:absolute; left:-4px; top:58%; width:8px; height:8px; border-radius:50%; background:#fff; z-index:5;"></div>
+                  <div style="position:absolute; right:-4px; top:58%; width:8px; height:8px; border-radius:50%; background:#fff; z-index:5;"></div>
+                  <!-- Details -->
+                  <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                    <div>
+                      <span style="font-size:4.5px; color:rgba(255,255,255,0.4); display:block; text-transform:uppercase;">Gate</span>
+                      <span style="font-size:7px; font-weight:700; color:#ff6b8b; font-family:monospace;">VIP A3</span>
+                    </div>
+                    <!-- Barcode -->
+                    <div style="display:flex; gap:1.5px; align-items:flex-end; height:12px; background:rgba(255,255,255,0.9); padding:2px; border-radius:1px;">
+                      <div style="width:1px; height:100%; background:#000;"></div>
+                      <div style="width:2px; height:100%; background:#000;"></div>
+                      <div style="width:1px; height:100%; background:#000;"></div>
+                      <div style="width:3px; height:100%; background:#000;"></div>
+                      <div style="width:1px; height:100%; background:#000;"></div>
                     </div>
                   </div>
                 </div>
@@ -1427,34 +1435,39 @@
 
           <!-- Factory Digital Twin -->
           <div class="project">
-            <div class="project-visual" style="min-height:240px; background: #060913; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding: 20px;">
-              <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(0,180,255,0.1), transparent 70%);"></div>
-              <!-- High-Fidelity Dashboard Blueprint Mockup -->
-              <div style="width:90%; background:rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; backdrop-filter: blur(6px);">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px;">
-                  <span style="font-size:7px; color:rgba(0,180,255,0.9); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; display:flex; align-items:center; gap:4px;">
-                    <span style="width:4px; height:4px; border-radius:50%; background:#00ff80; display:inline-block; animation:statusPulse 1.5s infinite;"></span>
-                    Telemetry Live
-                  </span>
-                  <span style="font-size:7px; color:rgba(255,255,255,0.4); font-family: 'JetBrains Mono',monospace;">OEE: 87.3%</span>
+            <div class="project-visual" style="min-height:240px; background: linear-gradient(135deg, #1e3c72, #2a5298); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding: 20px;">
+              <div style="position:absolute;inset:0;background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 45%);"></div>
+              <!-- Floating Browser Window Mockup -->
+              <div style="width: 190px; height: 135px; background: #0b132b; border-radius: 8px; box-shadow: 0 12px 28px rgba(0,0,0,0.25); display:flex; flex-direction:column; overflow:hidden; border: 1.5px solid rgba(255,255,255,0.08);">
+                <!-- Header -->
+                <div style="background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 5px 8px; display:flex; align-items:center; gap:4px;">
+                  <div style="width:4px; height:4px; border-radius:50%; background:#ff5f56;"></div>
+                  <div style="width:4px; height:4px; border-radius:50%; background:#ffbd2e;"></div>
+                  <div style="width:4px; height:4px; border-radius:50%; background:#27c93f;"></div>
+                  <span style="font-size:5px; color:rgba(255,255,255,0.3); font-family:monospace; margin-left:8px;">iosense-factory-dashboard</span>
                 </div>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
-                  <!-- Dial Sensor -->
-                  <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:6px; padding:6px; text-align:center;">
-                    <span style="font-size:6px; color:rgba(255,255,255,0.5); text-transform:uppercase;">Vibration</span>
-                    <div style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; color:#00b4ff; margin-top:2px;">4.2 mm/s</div>
+                <!-- Dashboard Content -->
+                <div style="flex:1; padding:8px; display:flex; flex-direction:column; justify-content:space-between;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:6px; color:#00ff80; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;">Telemetry Active</span>
+                    <span style="font-size:6px; color:rgba(255,255,255,0.4);">OEE: 87.3%</span>
                   </div>
-                  <!-- Chart Sensor -->
-                  <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:6px; padding:6px; text-align:center;">
-                    <span style="font-size:6px; color:rgba(255,255,255,0.5); text-transform:uppercase;">Temp Threshold</span>
-                    <div style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; color:#00ff80; margin-top:2px;">64.8 °C</div>
+                  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:4px; padding:4px; text-align:center;">
+                      <span style="font-size:5px; color:rgba(255,255,255,0.4); text-transform:uppercase;">Vibe</span>
+                      <div style="font-size:8px; font-weight:700; color:#00b4ff; font-family:'Space Grotesk',sans-serif; margin-top:1px;">4.2 mm/s</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:4px; padding:4px; text-align:center;">
+                      <span style="font-size:5px; color:rgba(255,255,255,0.4); text-transform:uppercase;">Temp</span>
+                      <div style="font-size:8px; font-weight:700; color:#00ff80; font-family:'Space Grotesk',sans-serif; margin-top:1px;">64.8°C</div>
+                    </div>
                   </div>
-                </div>
-                <!-- Real-time SVG graph visual -->
-                <div style="margin-top:8px; height:45px; background:rgba(0,180,255,0.04); border:1px solid rgba(0,180,255,0.12); border-radius:6px; position:relative; overflow:hidden;">
-                  <svg viewBox="0 0 200 45" preserveAspectRatio="none" style="width:100%; height:100%; position:absolute; inset:0;">
-                    <path d="M0,35 Q 25,15, 50,28 T 100,10 T 150,30 T 200,15 L 200,45 L 0,45 Z" fill="rgba(0,180,255,0.08)" stroke="#00b4ff" stroke-width="1.5"/>
-                  </svg>
+                  <!-- Waveform graph -->
+                  <div style="height:25px; background:rgba(0,180,255,0.04); border:1px solid rgba(0,180,255,0.1); border-radius:4px; overflow:hidden; position:relative;">
+                    <svg viewBox="0 0 200 45" preserveAspectRatio="none" style="width:100%; height:100%; position:absolute; inset:0;">
+                      <path d="M0,35 Q 25,15, 50,28 T 100,10 T 150,30 T 200,15 L 200,45 L 0,45 Z" fill="rgba(0,180,255,0.08)" stroke="#00b4ff" stroke-width="1.5"/>
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1476,27 +1489,31 @@
 
           <!-- Smart Utility -->
           <div class="project">
-            <div class="project-visual" style="min-height:240px; background: #05130b; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:20px;">
-              <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 60%, rgba(0,230,80,0.12), transparent 70%);"></div>
-              <!-- High-Fidelity Energy Utility App Mockup -->
-              <div style="width:90%; background:rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; backdrop-filter: blur(6px);">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                  <span style="font-size:7px; color:rgba(255,255,255,0.5); text-transform:uppercase;">Grid Cons.</span>
-                  <span style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:800; color:#00e650;">142 kWh</span>
-                </div>
-                <!-- Progress ring energy savings bar -->
-                <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:10px; margin-bottom:8px; display:flex; align-items:center; justify-content:space-between;">
+            <div class="project-visual" style="min-height:240px; background: linear-gradient(135deg, #02aab0, #00cdac); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:20px;">
+              <div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15), transparent 45%);"></div>
+              <!-- Floating Phone Frame Mockup -->
+              <div style="width: 140px; height: 210px; background: #fff; border-radius: 20px; box-shadow: 0 12px 28px rgba(0,0,0,0.22); padding: 8px; display:flex; flex-direction:column; position:relative; border: 3px solid #1a1108;">
+                <!-- Notch -->
+                <div style="width: 45px; height: 8px; background: #1a1108; border-radius: 0 0 6px 6px; position:absolute; top:0; left:50%; transform:translateX(-50%); z-index:10;"></div>
+                <!-- App Screen -->
+                <div style="flex:1; background:#fdfaf6; border-radius:12px; overflow:hidden; padding:10px 6px 6px; display:flex; flex-direction:column; justify-content:space-between; border: 1px solid rgba(0,0,0,0.03);">
                   <div>
-                    <span style="font-size:6px; color:rgba(255,255,255,0.4); text-transform:uppercase; display:block;">Solar self-sufficiency</span>
-                    <span style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; color:#ffdc00; margin-top:2px;">68% Efficiency</span>
+                    <span style="font-size:5px; color:rgba(0,0,0,0.4); text-transform:uppercase; display:block;">Energy Usage</span>
+                    <span style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:800; color:#00cdac;">142 kWh</span>
                   </div>
-                  <!-- Mini circle chart -->
-                  <div style="width:28px; height:28px; border-radius:50%; border:2px solid rgba(255,220,0,0.25); border-top-color:#ffdc00; transform:rotate(45deg);"></div>
-                </div>
-                <!-- Mini historical grid comparison -->
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:7px; color:rgba(255,255,255,0.5); border-top:1px solid rgba(255,255,255,0.05); padding-top:6px;">
-                  <span>Co₂ Reduction: <strong style="color:#00e650;">38 kg</strong></span>
-                  <span>Bill Target: <strong style="color:#fff;">On Track</strong></span>
+                  <!-- Progress Bar -->
+                  <div style="background:rgba(0,0,0,0.02); border:1px solid rgba(0,0,0,0.04); border-radius:6px; padding:5px; display:flex; align-items:center; justify-content:space-between;">
+                    <div>
+                      <span style="font-size:4.5px; color:rgba(0,0,0,0.4); text-transform:uppercase; display:block;">Solar Share</span>
+                      <span style="font-family:'Space Grotesk',sans-serif; font-size:8px; font-weight:700; color:#d4782a;">68% Opt.</span>
+                    </div>
+                    <!-- Mini circle -->
+                    <div style="width:14px; height:14px; border-radius:50%; border:1.5px solid rgba(212,120,42,0.2); border-top-color:#d4782a; transform:rotate(45deg);"></div>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; font-size:5px; color:rgba(0,0,0,0.4); border-top:1px solid rgba(0,0,0,0.05); padding-top:4px;">
+                    <span>CO₂: <strong style="color:#00cdac;">-38kg</strong></span>
+                    <span>Status: <strong style="color:#d4782a;">Good</strong></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1515,6 +1532,7 @@
             </div>
           </div>
         </div>
+      </div>
 
       <!-- Carousel Controls -->
       <div class="carousel-controls">
@@ -1578,6 +1596,9 @@
             <span class="skill-chip">Design Systems</span>
           </div>
         </div>
+      </div>
+      
+      <div class="reveal d1">
         <div class="skill-group">
           <div class="skill-group-head">
             <div class="skill-group-icon sgi-rose">🧠</div>
@@ -1592,6 +1613,9 @@
             <span class="skill-chip">Flow Maps</span>
           </div>
         </div>
+      </div>
+      
+      <div class="reveal d2">
         <div class="skill-group">
           <div class="skill-group-head">
             <div class="skill-group-icon sgi-cyan">💻</div>
@@ -1613,7 +1637,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
