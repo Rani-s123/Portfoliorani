@@ -88,48 +88,7 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* ===== CUSTOM CURSOR ===== */
-    .custom-cursor {
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      left: 0; top: 0;
-      transform: translate3d(var(--mx, 0px), var(--my, 0px), 0) translate(-50%, -50%) scale(1);
-      pointer-events: none;
-      z-index: 10000;
-      opacity: 0;
-      transition: transform 0.2s, opacity 0.2s, background-color 0.2s;
-    }
-    .custom-cursor-ring {
-      width: 30px; height: 30px;
-      border: 1.5px solid var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      left: 0; top: 0;
-      transform: translate3d(var(--rx, 0px), var(--ry, 0px), 0) translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0;
-      transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s, background-color 0.3s, opacity 0.3s;
-    }
-    
-    body.cursor-hover .custom-cursor {
-      transform: translate3d(var(--mx, 0px), var(--my, 0px), 0) translate(-50%, -50%) scale(0);
-      opacity: 0;
-    }
-    body.cursor-hover .custom-cursor-ring {
-      transform: translate3d(var(--rx, 0px), var(--ry, 0px), 0) translate(-50%, -50%);
-      width: 48px; height: 48px;
-      background: var(--accent-dim);
-      border-color: var(--accent);
-      border-width: 1.5px;
-    }
 
-    @media (pointer: coarse) {
-      .custom-cursor, .custom-cursor-ring { display: none !important; }
-      body { cursor: auto !important; }
-    }
 
     /* ===== MAGNETIC INTERACTION HELPER ===== */
     .magnetic {
@@ -1126,8 +1085,7 @@
 
 <div class="scroll-line" id="scrollLine"></div>
 <div class="grain"></div>
-<div class="custom-cursor" id="customCursor"></div>
-<div class="custom-cursor-ring" id="customCursorRing"></div>
+
 
 <!-- ====== NAV ====== -->
 <nav class="nav" id="nav">
@@ -1984,58 +1942,7 @@
       });
     });
 
-    // Custom Cursor Interaction
-    const cursor = document.getElementById('customCursor');
-    const cursorRing = document.getElementById('customCursorRing');
-    
-    if (cursor && cursorRing) {
-      let mouseX = 0;
-      let mouseY = 0;
-      let ringX = 0;
-      let ringY = 0;
-      let cursorVisible = false;
-      
-      window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursor.style.setProperty('--mx', mouseX + 'px');
-        cursor.style.setProperty('--my', mouseY + 'px');
-        
-        if (!cursorVisible) {
-          cursor.style.opacity = '1';
-          cursorRing.style.opacity = '1';
-          cursorVisible = true;
-        }
-      });
-      
-      const renderCursor = () => {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        cursorRing.style.setProperty('--rx', ringX + 'px');
-        cursorRing.style.setProperty('--ry', ringY + 'px');
-        requestAnimationFrame(renderCursor);
-      };
-      renderCursor();
-      
-      // Select elements for cursor snap/expansion state
-      const updateHoverTargets = () => {
-        const hoverTargets = document.querySelectorAll('a, button, .magnetic, .project, .hero-card, .skill-chip, .cert-card, .carousel-dot');
-        hoverTargets.forEach(target => {
-          if (target.dataset.cursorBound) return;
-          target.dataset.cursorBound = 'true';
-          
-          target.addEventListener('mouseenter', () => {
-            document.body.classList.add('cursor-hover');
-          });
-          target.addEventListener('mouseleave', () => {
-            document.body.classList.remove('cursor-hover');
-          });
-        });
-      };
-      updateHoverTargets();
-      
-      window.addEventListener('resize', updateHoverTargets);
-    }
+
 
     // Magnetic Button Interactions
     const magneticElements = document.querySelectorAll('.magnetic');
