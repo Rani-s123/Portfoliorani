@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motion Graphics &amp; Reels Case Study — Rani Rajpurohit</title>
+  <meta name="description" content="Visual breakdown of short-form video content, ads, and motion graphics designed by Rani Rajpurohit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0518;
+      --bg-elevated: #120b24;
+      --bg-card: rgba(25, 14, 52, 0.45);
+      --accent: #9d00ff;
+      --accent-glow: rgba(157, 0, 255, 0.35);
+      --white: #ffffff;
+      --gray-200: #e3daf5;
+      --gray-400: #a79cbf;
+      --border: rgba(157, 0, 255, 0.15);
+      --font-sans: 'Inter', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(157, 0, 255, 0.22) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(108, 60, 224, 0.15) 0px, transparent 50%);
+      color: var(--gray-200);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 60px 24px; }
+    .back-nav {
+      margin-bottom: 40px; display: inline-flex; align-items: center; gap: 8px;
+      color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: transform 0.3s var(--ease-out);
+      opacity: 0.85;
+    }
+    .back-nav:hover { transform: translateX(-4px); opacity: 1; }
+    
+    header { margin-bottom: 60px; }
+    .eyebrow {
+      color: var(--accent); font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;
+    }
+    h1 {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 24px;
+    }
+    .meta-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 24px 0; margin-bottom: 48px;
+    }
+    .meta-item label {
+      display: block; font-size: 0.72rem; font-weight: 600; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+    }
+    .meta-item span { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    
+    .section-title {
+      font-family: var(--font-display); font-size: 1.8rem; color: var(--white);
+      margin-bottom: 20px; border-left: 3px solid var(--accent); padding-left: 14px;
+    }
+    .card {
+      background: var(--bg-card); backdrop-filter: blur(12px);
+      border: 1px solid var(--border); border-radius: 20px; padding: 40px;
+      margin-bottom: 40px;
+    }
+    
+    /* Interactive Player Mockup */
+    .player-section {
+      display: flex; gap: 40px; flex-wrap: wrap; margin-top: 30px;
+      align-items: center; justify-content: center;
+    }
+    .player-container {
+      width: 250px; height: 440px; border-radius: 36px; border: 8px solid #221c38;
+      background: #000; position: relative; overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(157, 0, 255, 0.4);
+    }
+    .player-inner {
+      width: 100%; height: 100%; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 20px; position: relative;
+      background: linear-gradient(135deg, #1b0047, #3d0080);
+      animation: colorShift 10s ease infinite alternate;
+    }
+    @keyframes colorShift {
+      0% { background: linear-gradient(135deg, #1b0047, #3d0080); }
+      100% { background: linear-gradient(135deg, #3d0080, #7300c8); }
+    }
+    
+    /* Dynamic UI details in video */
+    .video-play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,0.25);
+      border: 2px solid #fff; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.3s;
+    }
+    .video-play-btn:hover { transform: translate(-50%, -50%) scale(1.1); }
+    
+    .timeline {
+      width: 100%; height: 3px; background: rgba(255,255,255,0.2);
+      position: relative; border-radius: 3px; margin-bottom: 12px;
+    }
+    .timeline-fill {
+      height: 100%; width: 45%; background: var(--white);
+      border-radius: 3px; position: relative;
+      animation: progressLoop 3s linear infinite;
+    }
+    @keyframes progressLoop {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    
+    /* Storyboard Grid */
+    .storyboard-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-top: 30px;
+    }
+    .storyboard-step {
+      background: rgba(0,0,0,0.2); border-radius: 12px; padding: 18px;
+      border: 1px solid var(--border);
+    }
+    .step-num {
+      width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; margin-bottom: 12px;
+    }
+    .storyboard-step h4 { color: #fff; font-size: 0.95rem; margin-bottom: 6px; }
+    .storyboard-step p { font-size: 0.8rem; margin: 0; color: var(--gray-400); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" class="back-nav">← Back to Portfolio</a>
+  
+  <header>
+    <div class="eyebrow">Video &amp; Motion Design</div>
+    <h1>Motion Graphics &amp; Video Editing</h1>
+    
+    <div class="meta-grid">
+      <div class="meta-item">
+        <label>Deliverable</label>
+        <span>Promotional Reels, Ads</span>
+      </div>
+      <div class="meta-item">
+        <label>Software</label>
+        <span>Premiere, After Effects</span>
+      </div>
+      <div class="meta-item">
+        <label>Formats</label>
+        <span>MP4, Short-Form, GIFs</span>
+      </div>
+      <div class="meta-item">
+        <label>Focus</label>
+        <span>Dynamic Transitions &amp; SFX</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="card">
+    <h2 class="section-title">The Challenge</h2>
+    <p>With short attention spans on social networks, video content must hit key visual hooks in the **first 3 seconds**. For brand promotions, motion graphics and sound effects must work together seamlessly to guide viewers from a curious scroll to a final CTA.</p>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Interactive Motion Preview</h2>
+    <p>Below is a mockup player visualizing dynamic kinetic typography, logo reveals, and motion design layouts built for digital campaigns.</p>
+    
+    <div class="player-section">
+      <div class="player-container">
+        <div class="player-inner">
+          <div class="video-play-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><polygon points="6,3 20,12 6,21"/></svg>
+          </div>
+          <div style="font-size: 9px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Now Playing</div>
+          <div style="font-size: 16px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px;">Kinetic Typo Promo</div>
+          <div class="timeline">
+            <div class="timeline-fill"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:7px; color:rgba(255,255,255,0.6)">
+            <span>0:07</span>
+            <span>0:15</span>
+          </div>
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 250px;">
+        <h3 style="color:#fff; margin-bottom:14px; font-size:1.2rem;">Post-Production Workflow</h3>
+        <p>1. **Concept &amp; Script**: Drafting the timeline hook to retain audiences.</p>
+        <p>2. **Visual Assets**: Sourcing and custom designing layouts in Illustrator.</p>
+        <p>3. **After Effects Animation**: Designing custom transitions, camera movements, and keyframe graphs.</p>
+        <p>4. **Audio Design**: Adding SFX and sound loops in Premiere Pro for immersive storytelling.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Detailed Storyboard Breakdown</h2>
+    <p>Breaking down a typical 15-second promotional video keyframe matrix:</p>
+    
+    <div class="storyboard-grid">
+      <div class="storyboard-step">
+        <div class="step-num">01</div>
+        <h4>The Hook</h4>
+        <p>0-3s: Fast animated typography statement to capture focus.</p>
+      </div>
+      <div class="storyboard-step">
+        <div class="step-num">02</div>
+        <h4>The Value</h4>
+        <p>3-10s: Dynamic layouts showing course highlights and outcomes.</p>
+      </div>
+      <div class="storyboard-step">
+        <div class="step-num">03</div>
+        <h4>The Outro</h4>
+        <p>10-15s: Animated logo reveal with an clear call to action.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

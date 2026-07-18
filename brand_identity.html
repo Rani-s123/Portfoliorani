@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Identity Case Study — Rani Rajpurohit</title>
+  <meta name="description" content="Detailed branding style guide and identity designs by Rani Rajpurohit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fdfaf6;
+      --bg-card: rgba(255, 252, 246, 0.75);
+      --accent: #d4782a;
+      --accent-deep: #b85e1a;
+      --accent-dim: rgba(212, 120, 42, 0.08);
+      --white: #1a1108;
+      --gray-200: #3d2e18;
+      --gray-400: #7d6848;
+      --border: rgba(100, 70, 20, 0.07);
+      --font-sans: 'Inter', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body {
+      background: var(--bg);
+      color: var(--gray-200);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 60px 24px; }
+    .back-nav {
+      margin-bottom: 40px; display: inline-flex; align-items: center; gap: 8px;
+      color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: transform 0.3s var(--ease-out);
+    }
+    .back-nav:hover { transform: translateX(-4px); }
+    
+    header { margin-bottom: 60px; }
+    .eyebrow {
+      color: var(--accent); font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;
+    }
+    h1 {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 24px;
+    }
+    .meta-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 24px 0; margin-bottom: 48px;
+    }
+    .meta-item label {
+      display: block; font-size: 0.72rem; font-weight: 600; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+    }
+    .meta-item span { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    
+    .section-title {
+      font-family: var(--font-display); font-size: 1.8rem; color: var(--white);
+      margin-bottom: 20px; border-left: 3px solid var(--accent); padding-left: 14px;
+    }
+    .card {
+      background: var(--bg-card); backdrop-filter: blur(12px);
+      border: 1px solid var(--border); border-radius: 20px; padding: 40px;
+      margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    
+    .logo-anatomy {
+      display: flex; justify-content: center; align-items: center;
+      padding: 60px; background: rgba(0,0,0,0.02); border-radius: 16px;
+      margin-top: 20px; position: relative; border: 1px solid var(--border);
+    }
+    .grid-swatches {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;
+      margin-top: 20px;
+    }
+    .swatch {
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+      transition: transform 0.3s; cursor: pointer;
+    }
+    .swatch:hover { transform: translateY(-4px); }
+    .swatch-color { height: 100px; }
+    .swatch-info { padding: 12px; background: #fff; font-size: 0.8rem; }
+    .swatch-info strong { color: var(--white); display: block; margin-bottom: 2px; }
+    
+    .typo-showcase {
+      padding: 30px; background: rgba(0,0,0,0.01); border-radius: 12px;
+      border: 1px dashed var(--border); margin-top: 20px;
+    }
+    .font-heavy { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .font-light { font-family: var(--font-sans); font-size: 14px; color: var(--gray-400); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" class="back-nav">← Back to Portfolio</a>
+  
+  <header>
+    <div class="eyebrow">Identity &amp; Strategy</div>
+    <h1>Brand Guidelines &amp; Identity</h1>
+    
+    <div class="meta-grid">
+      <div class="meta-item">
+        <label>Deliverable</label>
+        <span>Visual Identity, Logo</span>
+      </div>
+      <div class="meta-item">
+        <label>Software</label>
+        <span>Illustrator, InDesign</span>
+      </div>
+      <div class="meta-item">
+        <label>Deliverable type</label>
+        <span>Brand Guidelines Kit</span>
+      </div>
+      <div class="meta-item">
+        <label>Focus</label>
+        <span>Visual Balance &amp; Print</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="card">
+    <h2 class="section-title">The Challenge</h2>
+    <p>A brand is much more than a logo. The challenge lies in creating a cohesive, scalable **visual identity system** that remains consistent across physical letterheads, digital websites, presentation decks, and social banners. The system must establish clear rules for typography hierarchy, color ratios, and emblem spacing.</p>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Logo Anatomy &amp; Construction</h2>
+    <p>Using geometrical rules and grid-guided vector drawing, the brand emblem was constructed in Adobe Illustrator to maintain mathematical balance and ensure extreme legibility even at 16x16px favicon sizes.</p>
+    
+    <div class="logo-anatomy">
+      <svg width="120" height="120" viewBox="0 0 100 100">
+        <!-- Gridlines indicating logo construction -->
+        <circle cx="50" cy="50" r="45" stroke="rgba(212,120,42,0.18)" stroke-width="0.75" fill="none" stroke-dasharray="2,2"/>
+        <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(212,120,42,0.18)" stroke-width="0.75" stroke-dasharray="2,2"/>
+        <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(212,120,42,0.18)" stroke-width="0.75" stroke-dasharray="2,2"/>
+        <!-- Main geometrical logo shape -->
+        <polygon points="50,15 90,80 10,80" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linejoin="round"/>
+        <circle cx="50" cy="53" r="18" fill="none" stroke="var(--accent)" stroke-width="3"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Harmonious Color Palette</h2>
+    <p>A curated primary, secondary, and neutral color system designed to deliver premium aesthetic consistency across printing materials and high-contrast digital devices.</p>
+    
+    <div class="grid-swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #1a1108;"></div>
+        <div class="swatch-info">
+          <strong>Deep Charcoal</strong>
+          <span>#1A1108</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #d4782a;"></div>
+        <div class="swatch-info">
+          <strong>Warm Accent</strong>
+          <span>#D4782A</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #f5a623;"></div>
+        <div class="swatch-info">
+          <strong>Highlight Amber</strong>
+          <span>#F5A623</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #e8dcc8; border-bottom:1px solid #ddd;"></div>
+        <div class="swatch-info">
+          <strong>Warm Cream</strong>
+          <span>#E8DCC8</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Typography Blueprint</h2>
+    <p>Establish strict font hierarchies to direct user flow. High-impact sans-serif display headers paired with clean, geometric secondary typefaces.</p>
+    
+    <div class="typo-showcase">
+      <div class="font-heavy">Space Grotesk Bold</div>
+      <div class="font-light">Used for primary headlines, course titles, and high-impact packaging.</div>
+      <div style="height:15px"></div>
+      <div style="font-family: var(--font-sans); font-size:18px; font-weight:500; color:var(--white);">Inter Regular &amp; Medium</div>
+      <div class="font-light">Used for body descriptions, captions, and secondary messaging.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
