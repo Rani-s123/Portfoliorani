@@ -11,15 +11,15 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #fdfaf6;
-      --bg-card: rgba(255, 252, 246, 0.75);
+      --bg: #faf7f2;
+      --bg-card: rgba(255, 252, 246, 0.85);
       --accent: #d4782a;
       --accent-deep: #b85e1a;
       --accent-dim: rgba(212, 120, 42, 0.08);
       --white: #1a1108;
       --gray-200: #3d2e18;
       --gray-400: #7d6848;
-      --border: rgba(100, 70, 20, 0.07);
+      --border: rgba(100, 70, 20, 0.08);
       --font-sans: 'Inter', sans-serif;
       --font-display: 'Space Grotesk', sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -47,6 +47,7 @@
     h1 {
       font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.8rem);
       font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 24px;
+      letter-spacing: -0.02em;
     }
     .meta-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -64,35 +65,49 @@
       margin-bottom: 20px; border-left: 3px solid var(--accent); padding-left: 14px;
     }
     .card {
-      background: var(--bg-card); backdrop-filter: blur(12px);
-      border: 1px solid var(--border); border-radius: 20px; padding: 40px;
-      margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      background: var(--bg-card); backdrop-filter: blur(24px);
+      border: 1px solid var(--border); border-radius: 24px; padding: 40px;
+      margin-bottom: 40px; box-shadow: 0 4px 30px rgba(60,35,5,0.02);
     }
     
     .logo-anatomy {
       display: flex; justify-content: center; align-items: center;
-      padding: 60px; background: rgba(0,0,0,0.02); border-radius: 16px;
-      margin-top: 20px; position: relative; border: 1px solid var(--border);
+      padding: 60px; background: rgba(0,0,0,0.02); border-radius: 20px;
+      margin-top: 20px; position: relative; border: 1px dashed var(--border);
     }
     .grid-swatches {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px;
       margin-top: 20px;
     }
     .swatch {
-      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-      transition: transform 0.3s; cursor: pointer;
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      transition: all 0.3s var(--ease-out); cursor: pointer; background: #fff;
     }
-    .swatch:hover { transform: translateY(-4px); }
-    .swatch-color { height: 100px; }
-    .swatch-info { padding: 12px; background: #fff; font-size: 0.8rem; }
+    .swatch:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.03); }
+    .swatch-color { height: 110px; position: relative; }
+    .swatch-info { padding: 16px; font-size: 0.8rem; }
     .swatch-info strong { color: var(--white); display: block; margin-bottom: 2px; }
+    .swatch-info span { color: var(--gray-400); font-family: monospace; }
     
     .typo-showcase {
-      padding: 30px; background: rgba(0,0,0,0.01); border-radius: 12px;
-      border: 1px dashed var(--border); margin-top: 20px;
+      padding: 30px; background: #fff; border-radius: 16px;
+      border: 1px solid var(--border); margin-top: 20px;
     }
-    .font-heavy { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-    .font-light { font-family: var(--font-sans); font-size: 14px; color: var(--gray-400); }
+    .tester-input {
+      width: 100%; padding: 12px 18px; border-radius: 8px; border: 1px solid var(--border);
+      font-size: 0.9rem; margin-top: 14px; margin-bottom: 20px; outline: none;
+      font-family: var(--font-sans); background: var(--bg);
+    }
+    .font-heavy { font-family: var(--font-display); font-size: 36px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .font-light { font-family: var(--font-sans); font-size: 15px; color: var(--gray-200); }
+
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; background: var(--white);
+      color: var(--bg); padding: 12px 24px; border-radius: 10px; font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1); opacity: 0; transform: translateY(10px);
+      transition: all 0.4s var(--ease-out); z-index: 1000;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -107,19 +122,19 @@
     <div class="meta-grid">
       <div class="meta-item">
         <label>Deliverable</label>
-        <span>Visual Identity, Logo</span>
+        <span>Brand Identity System</span>
       </div>
       <div class="meta-item">
         <label>Software</label>
         <span>Illustrator, InDesign</span>
       </div>
       <div class="meta-item">
-        <label>Deliverable type</label>
-        <span>Brand Guidelines Kit</span>
+        <label>Focus</label>
+        <span>Typography, Grid Alignment</span>
       </div>
       <div class="meta-item">
-        <label>Focus</label>
-        <span>Visual Balance &amp; Print</span>
+        <label>Creative Asset</label>
+        <span>Logo System</span>
       </div>
     </div>
   </header>
@@ -130,16 +145,14 @@
   </div>
 
   <div class="card">
-    <h2 class="section-title">Logo Anatomy &amp; Construction</h2>
-    <p>Using geometrical rules and grid-guided vector drawing, the brand emblem was constructed in Adobe Illustrator to maintain mathematical balance and ensure extreme legibility even at 16x16px favicon sizes.</p>
+    <h2 class="section-title">Logo Construction</h2>
+    <p>Logo constructed in Illustrator based on geometry and gridlines for visual alignment and stability at any size.</p>
     
     <div class="logo-anatomy">
       <svg width="120" height="120" viewBox="0 0 100 100">
-        <!-- Gridlines indicating logo construction -->
-        <circle cx="50" cy="50" r="45" stroke="rgba(212,120,42,0.18)" stroke-width="0.75" fill="none" stroke-dasharray="2,2"/>
-        <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(212,120,42,0.18)" stroke-width="0.75" stroke-dasharray="2,2"/>
-        <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(212,120,42,0.18)" stroke-width="0.75" stroke-dasharray="2,2"/>
-        <!-- Main geometrical logo shape -->
+        <circle cx="50" cy="50" r="45" stroke="rgba(212,120,42,0.2)" stroke-width="0.75" fill="none" stroke-dasharray="2,2"/>
+        <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(212,120,42,0.2)" stroke-width="0.75" stroke-dasharray="2,2"/>
+        <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(212,120,42,0.2)" stroke-width="0.75" stroke-dasharray="2,2"/>
         <polygon points="50,15 90,80 10,80" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linejoin="round"/>
         <circle cx="50" cy="53" r="18" fill="none" stroke="var(--accent)" stroke-width="3"/>
       </svg>
@@ -148,31 +161,31 @@
 
   <div class="card">
     <h2 class="section-title">Harmonious Color Palette</h2>
-    <p>A curated primary, secondary, and neutral color system designed to deliver premium aesthetic consistency across printing materials and high-contrast digital devices.</p>
+    <p>Click any card below to copy the color code directly to your clipboard.</p>
     
     <div class="grid-swatches">
-      <div class="swatch">
+      <div class="swatch" onclick="copyColor('#1A1108')">
         <div class="swatch-color" style="background: #1a1108;"></div>
         <div class="swatch-info">
           <strong>Deep Charcoal</strong>
           <span>#1A1108</span>
         </div>
       </div>
-      <div class="swatch">
+      <div class="swatch" onclick="copyColor('#D4782A')">
         <div class="swatch-color" style="background: #d4782a;"></div>
         <div class="swatch-info">
           <strong>Warm Accent</strong>
           <span>#D4782A</span>
         </div>
       </div>
-      <div class="swatch">
+      <div class="swatch" onclick="copyColor('#F5A623')">
         <div class="swatch-color" style="background: #f5a623;"></div>
         <div class="swatch-info">
           <strong>Highlight Amber</strong>
           <span>#F5A623</span>
         </div>
       </div>
-      <div class="swatch">
+      <div class="swatch" onclick="copyColor('#E8DCC8')">
         <div class="swatch-color" style="background: #e8dcc8; border-bottom:1px solid #ddd;"></div>
         <div class="swatch-info">
           <strong>Warm Cream</strong>
@@ -183,18 +196,47 @@
   </div>
 
   <div class="card">
-    <h2 class="section-title">Typography Blueprint</h2>
-    <p>Establish strict font hierarchies to direct user flow. High-impact sans-serif display headers paired with clean, geometric secondary typefaces.</p>
+    <h2 class="section-title">Interactive Typography Tester</h2>
+    <p>Type in the input field below to test how the brand's typeface renders in real-time.</p>
+    
+    <input type="text" class="tester-input" id="typoTester" placeholder="Type here to test typography...">
     
     <div class="typo-showcase">
-      <div class="font-heavy">Space Grotesk Bold</div>
-      <div class="font-light">Used for primary headlines, course titles, and high-impact packaging.</div>
-      <div style="height:15px"></div>
-      <div style="font-family: var(--font-sans); font-size:18px; font-weight:500; color:var(--white);">Inter Regular &amp; Medium</div>
-      <div class="font-light">Used for body descriptions, captions, and secondary messaging.</div>
+      <div class="font-heavy" id="displaySpecimen">Space Grotesk Bold</div>
+      <div class="font-light" id="sansSpecimen">Inter Regular &amp; Medium specimen. Designed for readability.</div>
     </div>
   </div>
 </div>
+
+<div class="toast" id="toast">Copied to Clipboard!</div>
+
+<script>
+  const tester = document.getElementById('typoTester');
+  const displaySpecimen = document.getElementById('displaySpecimen');
+  const sansSpecimen = document.getElementById('sansSpecimen');
+  
+  tester.addEventListener('input', (e) => {
+    const text = e.target.value;
+    if (text.trim() !== '') {
+      displaySpecimen.innerText = text;
+      sansSpecimen.innerText = text;
+    } else {
+      displaySpecimen.innerText = "Space Grotesk Bold";
+      sansSpecimen.innerText = "Inter Regular & Medium specimen. Designed for readability.";
+    }
+  });
+
+  const copyColor = (hex) => {
+    navigator.clipboard.writeText(hex).then(() => {
+      const toast = document.getElementById('toast');
+      toast.innerText = `Copied ${hex}!`;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    });
+  };
+</script>
 
 </body>
 </html>

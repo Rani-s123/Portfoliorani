@@ -11,16 +11,17 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0b0221;
-      --bg-elevated: #150a33;
-      --bg-card: rgba(30, 16, 70, 0.45);
-      --accent: #ff4d6d;
-      --accent-glow: rgba(255, 77, 109, 0.35);
+      --bg: #060212;
+      --bg-elevated: #0f0729;
+      --bg-card: rgba(22, 11, 48, 0.6);
+      --accent: #ff2a5f;
+      --accent-deep: #cc1243;
+      --accent-glow: rgba(255, 42, 95, 0.4);
       --white: #ffffff;
-      --gray-200: #e0d5f5;
-      --gray-400: #9d8dbd;
-      --border: rgba(255, 77, 109, 0.15);
-      --border-hover: rgba(255, 77, 109, 0.4);
+      --gray-200: #e5daf5;
+      --gray-400: #a593c2;
+      --border: rgba(255, 42, 95, 0.2);
+      --border-hover: rgba(255, 42, 95, 0.5);
       --font-sans: 'Inter', sans-serif;
       --font-display: 'Space Grotesk', sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -28,8 +29,8 @@
     body {
       background: var(--bg);
       background-image: 
-        radial-gradient(at 0% 0%, rgba(108, 60, 224, 0.25) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(255, 77, 109, 0.15) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(108, 60, 224, 0.3) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(255, 42, 95, 0.2) 0px, transparent 50%);
       color: var(--gray-200);
       font-family: var(--font-sans);
       line-height: 1.7;
@@ -39,18 +40,19 @@
     .back-nav {
       margin-bottom: 40px; display: inline-flex; align-items: center; gap: 8px;
       color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem;
-      transition: transform 0.3s var(--ease-out);
+      transition: transform 0.3s var(--ease-out), color 0.3s;
     }
-    .back-nav:hover { transform: translateX(-4px); }
+    .back-nav:hover { transform: translateX(-4px); color: var(--white); }
     
     header { margin-bottom: 60px; }
     .eyebrow {
       color: var(--accent); font-size: 0.8rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;
+      text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 12px;
     }
     h1 {
       font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.8rem);
       font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 24px;
+      letter-spacing: -0.02em;
     }
     .meta-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -66,55 +68,79 @@
     .section-title {
       font-family: var(--font-display); font-size: 1.8rem; color: var(--white);
       margin-bottom: 20px; border-left: 3px solid var(--accent); padding-left: 14px;
+      letter-spacing: -0.01em;
     }
     .card {
-      background: var(--bg-card); backdrop-filter: blur(12px);
-      border: 1px solid var(--border); border-radius: 20px; padding: 40px;
-      margin-bottom: 40px;
+      background: var(--bg-card); backdrop-filter: blur(24px);
+      border: 1px solid var(--border); border-radius: 24px; padding: 40px;
+      margin-bottom: 40px; box-shadow: 0 12px 40px -10px rgba(0,0,0,0.3);
+      transition: all 0.4s var(--ease-out);
     }
-    
-    /* Interactive Post Slider */
-    .slider-box {
-      background: rgba(0,0,0,0.3); border-radius: 16px; overflow: hidden;
-      margin-top: 30px; position: relative; border: 1px solid rgba(255,255,255,0.05);
+    .card:hover { border-color: var(--border-hover); }
+
+    /* Instagram Simulator */
+    .sim-container {
+      display: grid; grid-template-columns: 1fr 340px; gap: 40px; margin-top: 30px;
+      align-items: center;
     }
-    .slides-wrapper { display: flex; transition: transform 0.5s var(--ease-out); }
-    .slide-item {
-      min-width: 100%; padding: 40px; display: flex; align-items: center;
-      justify-content: center; background: linear-gradient(135deg, #150a33, #0d0221);
+    @media (max-width: 900px) {
+      .sim-container { grid-template-columns: 1fr; }
     }
-    .ig-post-mockup {
-      width: 320px; height: 320px; border-radius: 12px;
-      padding: 24px; position: relative; display: flex; flex-direction: column;
-      justify-content: space-between; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    .phone-frame {
+      width: 320px; height: 500px; border-radius: 40px; border: 10px solid #1a1530;
+      background: #000; overflow: hidden; position: relative; margin: 0 auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(108,60,224,0.15);
+      display: flex; flex-direction: column;
     }
-    .post-1 { background: linear-gradient(135deg, #e94560, #9b59b6); }
-    .post-2 { background: linear-gradient(135deg, #f5a623, #e94560); }
-    .post-3 { background: linear-gradient(135deg, #11998e, #38ef7d); }
-    .post-4 { background: linear-gradient(135deg, #0077b5, #00a0dc); }
-    
-    .slider-controls {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 24px; background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.05);
+    .phone-screen {
+      flex: 1; display: flex; flex-direction: column; justify-content: space-between;
+      position: relative;
     }
-    .slider-btn {
-      background: none; border: 1px solid var(--border); color: var(--white);
-      padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s;
+    .phone-header {
+      padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
+      background: #000; border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.72rem; color: var(--white); font-weight: 700;
     }
-    .slider-btn:hover { background: var(--accent); border-color: var(--accent); }
-    
-    .grid-visuals {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
-      margin-top: 30px;
+    .post-content {
+      width: 300px; height: 300px; margin: 0 auto; display: flex; flex-direction: column;
+      justify-content: space-between; padding: 24px; transition: all 0.4s var(--ease-out);
+      border-radius: 12px;
     }
-    .mini-post {
-      border-radius: 12px; overflow: hidden; min-height: 200px;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
-      position: relative; border: 1px solid rgba(255,255,255,0.05);
+    .post-1 { background: linear-gradient(135deg, #ff2a5f, #7912cc); }
+    .post-2 { background: linear-gradient(135deg, #f5a623, #ff2a5f); }
+    .post-3 { background: linear-gradient(135deg, #11998e, #12cc6b); }
+    .post-4 { background: linear-gradient(135deg, #0077b5, #00c6ff); }
+
+    .phone-actions {
+      padding: 12px 16px; background: #000; border-top: 1px solid rgba(255,255,255,0.08);
     }
-    
-    p { margin-bottom: 20px; color: var(--gray-200); font-size: 1rem; }
-    strong { color: var(--white); }
+    .action-icons { display: flex; gap: 14px; margin-bottom: 6px; }
+    .heart-btn { cursor: pointer; transition: transform 0.2s; }
+    .heart-btn:active { transform: scale(1.4); }
+    .likes-text { font-size: 0.72rem; color: var(--white); font-weight: 700; }
+
+    .control-panel {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+    }
+    .control-btn {
+      width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border);
+      background: transparent; color: var(--white); font-weight: 600; cursor: pointer;
+      margin-bottom: 12px; text-align: left; display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.3s;
+    }
+    .control-btn:hover, .control-btn.active {
+      background: var(--accent); border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; background: var(--accent);
+      color: #fff; padding: 12px 24px; border-radius: 10px; font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3); opacity: 0; transform: translateY(10px);
+      transition: all 0.4s var(--ease-out); z-index: 1000;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -123,119 +149,145 @@
   <a href="index.html" class="back-nav">← Back to Portfolio</a>
   
   <header>
-    <div class="eyebrow">Marketing &amp; Campaigns</div>
-    <h1>Social Media Creatives</h1>
+    <div class="eyebrow">Visual Campaigns</div>
+    <h1>Social Media Designs</h1>
     
     <div class="meta-grid">
       <div class="meta-item">
         <label>Deliverable</label>
-        <span>Social Media Campaigns</span>
+        <span>Promotional Graphics</span>
       </div>
       <div class="meta-item">
         <label>Software</label>
-        <span>Photoshop, Figma, Canva</span>
+        <span>Photoshop, Illustrator</span>
       </div>
       <div class="meta-item">
-        <label>Target Platforms</label>
-        <span>Instagram, LinkedIn, FB</span>
+        <label>Target Audience</label>
+        <span>Tech Professionals &amp; Students</span>
       </div>
       <div class="meta-item">
-        <label>Industry focus</label>
-        <span>EdTech &amp; Emerging Tech</span>
+        <label>Brand Focus</label>
+        <span>Boston Institute of Analytics</span>
       </div>
     </div>
   </header>
 
   <div class="card">
     <h2 class="section-title">The Challenge</h2>
-    <p>In a saturated feed, digital marketing demands visuals that capture attention within <strong>1.5 seconds</strong>. For educational platforms like BIA, the visual asset must translate complex tech concepts (like AI, Data Science, and Machine Learning) into digestible, high-engagement visual formats that inspire students and professionals to take action.</p>
+    <p>Designing digital marketing graphics requires a balance between aesthetic appeal and clear informational layout. For emerging technologies campaigns, this means using a **glowing dark aesthetic, sharp sans-serif typography, and high-visibility stats** to maximize CTR and lead conversion.</p>
   </div>
 
   <div class="card">
-    <h2 class="section-title">Creative Showcase</h2>
-    <p>Below is a collection of educational carousels, ad creatives, and high-impact grid templates designed to drive conversion rates and brand value.</p>
+    <h2 class="section-title">Interactive Feed Simulator</h2>
+    <p>Click the options in the control panel to swap visual templates in real-time inside the simulated phone viewer. Double-tap or click the heart icon to simulate engagement.</p>
     
-    <div class="slider-box">
-      <div class="slides-wrapper" id="slidesWrapper">
-        <!-- Slide 1 -->
-        <div class="slide-item">
-          <div class="ig-post-mockup post-1">
-            <div style="font-size: 9px; font-weight: 800; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; text-transform: uppercase;">Masterclass Series</div>
-            <div style="font-size: 24px; font-weight: 900; color: #fff; line-height: 1.1;">AI &amp; MACHINE<br>LEARNING</div>
-            <div style="font-size: 10px; color: #fff; opacity: 0.9;">Join The Future · Free Registration</div>
+    <div class="sim-container">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <span>boston_institute_of_analytics</span>
+            <span style="font-size:12px; cursor:pointer;">•••</span>
           </div>
-        </div>
-        <!-- Slide 2 -->
-        <div class="slide-item">
-          <div class="ig-post-mockup post-2">
-            <div style="font-size: 9px; font-weight: 800; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; text-transform: uppercase;">Growth Career</div>
-            <div style="font-size: 24px; font-weight: 900; color: #fff; line-height: 1.1;">DATA SCIENCE<br>BOOTCAMP</div>
-            <div style="font-size: 10px; color: #fff; opacity: 0.9;">100% Placement Support</div>
+          
+          <div class="post-content post-1" id="postContent">
+            <div style="font-size: 8px; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: 0.14em; text-transform: uppercase;" id="postSub">AI &amp; DEEP LEARNING</div>
+            <div style="font-size: 24px; font-weight: 900; color: #fff; line-height: 1.1; letter-spacing:-0.02em;" id="postTitle">NEXT-GEN<br>ARTIFICIAL<br>INTELLIGENCE</div>
+            <div style="font-size: 9px; color: #fff; font-weight:700; background:rgba(0,0,0,0.25); padding:6px 12px; border-radius:6px; width:fit-content;" id="postBadge">Register For Masterclass →</div>
           </div>
-        </div>
-        <!-- Slide 3 -->
-        <div class="slide-item">
-          <div class="ig-post-mockup post-3">
-            <div style="font-size: 9px; font-weight: 800; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; text-transform: uppercase;">Alumni Spotlight</div>
-            <div style="font-size: 20px; font-weight: 900; color: #fff; line-height: 1.2;">"BIA completely transformed my career trajectory."</div>
-            <div style="font-size: 10px; color: #fff; opacity: 0.9;">— Anjali M., Data Analyst</div>
-          </div>
-        </div>
-        <!-- Slide 4 -->
-        <div class="slide-item">
-          <div class="ig-post-mockup post-4">
-            <div style="font-size: 9px; font-weight: 800; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; text-transform: uppercase;">LinkedIn Special</div>
-            <div style="font-size: 22px; font-weight: 900; color: #fff; line-height: 1.1;">AI-POWERED<br>MARKETING</div>
-            <div style="font-size: 10px; color: #fff; opacity: 0.9;">Download Free E-Book</div>
+          
+          <div class="phone-actions">
+            <div class="action-icons">
+              <span class="heart-btn" id="heartIcon" style="font-size: 16px; color:#aaa; user-select:none;">♥</span>
+              <span style="font-size: 16px; color:#aaa; user-select:none;">💬</span>
+              <span style="font-size: 16px; color:#aaa; user-select:none;">✈</span>
+            </div>
+            <div class="likes-text"><span id="likesCount">1,420</span> likes</div>
           </div>
         </div>
       </div>
-      <div class="slider-controls">
-        <button class="slider-btn" id="prevBtn">← Previous</button>
-        <span id="slideIndicator" style="font-size:0.8rem; font-weight:700;">Post 1 of 4</span>
-        <button class="slider-btn" id="nextBtn">Next →</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" id="youtube">
-    <h2 class="section-title">EdTech Banner Design &amp; CTR Optimization</h2>
-    <p>Designing for YouTube and web banners requires high visual contrast and optimal space layout. Main headlines are positioned strategically to prevent overlay by YouTube UI elements, resulting in a **30% lift in Click-Through Rates (CTR)**.</p>
-    
-    <div class="grid-visuals">
-      <div class="mini-post" style="background: linear-gradient(135deg, #111, #ff0000); min-height: 160px;">
-        <div style="font-size: 14px; font-weight: 900; color: #fff;">AI FOR DEV WORKSHOPS</div>
-      </div>
-      <div class="mini-post" style="background: linear-gradient(135deg, #051a0d, #02aab0); min-height: 160px;">
-        <div style="font-size: 14px; font-weight: 900; color: #fff;">DATA VISUALIZATION BEST PRACTICES</div>
+      
+      <div class="control-panel">
+        <h4 style="color:#fff; margin-bottom:16px;">Campaign Themes</h4>
+        <button class="control-btn active" onclick="switchTheme(1, this)">
+          <span>Artificial Intelligence</span>
+          <span>→</span>
+        </button>
+        <button class="control-btn" onclick="switchTheme(2, this)">
+          <span>Data Science Bootcamp</span>
+          <span>→</span>
+        </button>
+        <button class="control-btn" onclick="switchTheme(3, this)">
+          <span>Alumni Success Quote</span>
+          <span>→</span>
+        </button>
+        <button class="control-btn" onclick="switchTheme(4, this)">
+          <span>Free E-Book Launch</span>
+          <span>→</span>
+        </button>
       </div>
     </div>
   </div>
 </div>
 
+<div class="toast" id="toast">Post Saved!</div>
+
 <script>
-  const wrapper = document.getElementById('slidesWrapper');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const indicator = document.getElementById('slideIndicator');
+  const post = document.getElementById('postContent');
+  const sub = document.getElementById('postSub');
+  const title = document.getElementById('postTitle');
+  const badge = document.getElementById('postBadge');
   
-  let currentIdx = 0;
-  const totalSlides = 4;
+  const heart = document.getElementById('heartIcon');
+  const likes = document.getElementById('likesCount');
   
-  const updateSlide = () => {
-    wrapper.style.transform = `translateX(-${currentIdx * 100}%)`;
-    indicator.textContent = `Post ${currentIdx + 1} of ${totalSlides}`;
+  let hasLiked = false;
+  
+  const switchTheme = (id, btn) => {
+    document.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    post.className = `post-content post-${id}`;
+    
+    if(id === 1) {
+      sub.innerText = "AI & DEEP LEARNING";
+      title.innerHTML = "NEXT-GEN<br>ARTIFICIAL<br>INTELLIGENCE";
+      badge.innerText = "Register For Masterclass →";
+    } else if(id === 2) {
+      sub.innerText = "BIA PLACEMENT DRIVES";
+      title.innerHTML = "DATA SCIENCE<br>CAREER BOOTCAMP";
+      badge.innerText = "100% Placement Support →";
+    } else if(id === 3) {
+      sub.innerText = "ALUMNI SPOTLIGHT";
+      title.innerHTML = '"BIA shaped my path into emerging technology."';
+      badge.innerText = "Read Alumni Stories →";
+    } else if(id === 4) {
+      sub.innerText = "FREE ACADEMIC RESOURCE";
+      title.innerHTML = "TOP 10 AI TOOLS<br>FOR DESIGNERS";
+      badge.innerText = "Download Free E-Book →";
+    }
   };
   
-  prevBtn.addEventListener('click', () => {
-    currentIdx = (currentIdx === 0) ? totalSlides - 1 : currentIdx - 1;
-    updateSlide();
+  heart.addEventListener('click', () => {
+    if(!hasLiked) {
+      heart.style.color = '#ff2a5f';
+      likes.innerText = '1,421';
+      hasLiked = true;
+      showToast("Post Liked & Saved!");
+    } else {
+      heart.style.color = '#aaa';
+      likes.innerText = '1,420';
+      hasLiked = false;
+    }
   });
   
-  nextBtn.addEventListener('click', () => {
-    currentIdx = (currentIdx === totalSlides - 1) ? 0 : currentIdx + 1;
-    updateSlide();
-  });
+  const showToast = (msg) => {
+    const toast = document.getElementById('toast');
+    toast.innerText = msg;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2000);
+  };
 </script>
 
 </body>
